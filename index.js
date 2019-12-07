@@ -142,7 +142,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     nowTimeEmoji = "🕛";
                 }
                 break;
-            case 11:
+            case 12:
                 if (nowMinute >= 0 && nowMinute < 15) {
                     nowTimeEmoji = "🕛";
                 } else if (nowMinute >= 15 && nowMinute < 45) {
