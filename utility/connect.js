@@ -44,8 +44,6 @@ var disconnect = async function (lineid) {
 var register = async function (id, password, lineid) {
     //存放結果
     let result;
-    var date = new Date();
-    var today = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     //新增日記
     await query('INSERT INTO member(id, password, lineid) values($1, $2, $3)', [id, password, lineid])
         .then((data) => {

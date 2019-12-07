@@ -306,7 +306,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else {
-                agent.add(data.username + '註冊成功');
+                agent.add('註冊成功');
             }
         })
     }
@@ -830,7 +830,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('login / logout', loginAndLogout);
     intentMap.set('login / logout - login', login);
     intentMap.set('login / logout - logout', logout);
-    intentMap.set('register - costom', register);
+    intentMap.set('register - custom', register);
 
     intentMap.set('do what', doWhat);
     intentMap.set('NasalCongestion - custom', NasalCongestion);
