@@ -31,15 +31,55 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------   
     function welcome() {
         var today = new Date();
+        var nowHour = today.getHours() + 8;
+        var nowHourEmoji;
+        switch (nowHour) {
+            case 0, 12:
+                nowHourEmoji = "🕛";
+                break;
+            case 1, 13:
+                nowHourEmoji = "🕐";
+                break;
+            case 2, 14:
+                nowHourEmoji = "🕑";
+                break;
+            case 3, 15:
+                nowHourEmoji = "🕒";
+                break;
+            case 4, 16:
+                nowHourEmoji = "🕓";
+                break;
+            case 5, 17:
+                nowHourEmoji = "🕔";
+                break;
+            case 6, 18:
+                nowHourEmoji = "🕕";
+                break;
+            case 7, 19:
+                nowHourEmoji = "🕖";
+                break;
+            case 8, 20:
+                nowHourEmoji = "🕗";
+                break;
+            case 9, 21:
+                nowHourEmoji = "🕘";
+                break;
+            case 10, 22:
+                nowHourEmoji = "🕙";
+                break;
+            case 11, 23:
+                nowHourEmoji = "🕚";
+                break;
+        }
         var currentDateTime =
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
             today.getDate() + '日(' +
-            (today.getHours() + 8) + ':' + today.getMinutes() +
+            nowHourEmoji + nowHour + ':' + today.getMinutes() +
             ')';
         var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
-        agent.add("現在是" + currentDateTime);
+        agent.add("現在是" + currentDateTime );
     }
     function whoAmI(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
@@ -52,12 +92,12 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 } else {
                     if (data.username != undefined) {
                         var emoji;
-                        if(data.appellation == "爸爸"){
-                            emoji="👨";
-                        }else if(data.appellation == "媽媽"){
-                            emoji="👩";
-                        }else{
-                            emoji="🤡";
+                        if (data.appellation == "爸爸") {
+                            emoji = "👨";
+                        } else if (data.appellation == "媽媽") {
+                            emoji = "👩";
+                        } else {
+                            emoji = "🤡";
                         }
                         agent.add("你是" + data.username + "，是個" + emoji + data.appellation + "。");
                         agent.add("📧電子信箱是" + data.id);
@@ -90,10 +130,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 var msg = "👶🏻寶寶資訊";
                                 data.forEach(item => {
                                     var emoji;
-                                    if(item.gender=="男孩"){
-                                        emoji="👦";
-                                    }else if(item.gender=="女孩"){
-                                        emoji="👧";
+                                    if (item.gender == "男孩") {
+                                        emoji = "👦";
+                                    } else if (item.gender == "女孩") {
+                                        emoji = "👧";
                                     }
                                     if (item.height == null) {
                                         msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢';
