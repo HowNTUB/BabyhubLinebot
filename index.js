@@ -132,12 +132,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         sendAsMessage: true
                     });
                     agent.add(payload);
-
-                    if (req.body.queryResult.queryText == "否") {
-                        agent.add("好的～等你想好隨時都可以取消綁定哦。");
-                    } else{
-                        agent.add("我不太懂你的意思");
-                    }
                 }
             }
         })
