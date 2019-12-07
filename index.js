@@ -29,50 +29,123 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------
     // 處理歡迎意圖
     //------------------------------------   
+
     function welcome() {
         var today = new Date();
-        var nowHour = today.getHours() + 8;
+        var nowHour = (today.getHours() + 8) > 12 ? (today.getHours() + 8) - 12 : today.getHours() + 8;
         var nowMinute = today.getMinutes();
         var nowTimeEmoji;
         switch (nowHour) {
-            case 0, 12:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕧" : "🕛";
+            case 0:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕛";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕧";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕐";
+                }
                 break;
-            case 1, 13:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕜" : "🕐";
+            case 1:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕐";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕜";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕑";
+                }
                 break;
-            case 2, 14:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕝" : "🕑";
+            case 2:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕑";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕝";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕒";
+                }
                 break;
-            case 3, 15:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕞" : "🕒";
+            case 3:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕒";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕞";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕓";
+                }
                 break;
-            case 4, 16:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕟" : "🕓";
+            case 4:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕓";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕟";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕔";
+                }
                 break;
-            case 5, 17:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕠" : "🕔";
+            case 5:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕔";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕠";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕕";
+                }
                 break;
-            case 6, 18:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕡" : "🕕";
+            case 6:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕕";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕡";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕖";
+                }
                 break;
-            case 7, 19:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕢" : "🕖";
+            case 7:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕖";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕢";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕗";
+                }
                 break;
-            case 8, 20:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕣" : "🕗";
+            case 8:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕗";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕣";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕘";
+                }
                 break;
-            case 9, 21:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕤" : "🕘";
+            case 9:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕘";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕤";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕙";
+                }
                 break;
-            case 10, 22:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕥" : "🕙";
+            case 10:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕙";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕥";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕚";
+                }
                 break;
-            case 11, 23:
-                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕦" : "🕚";
+            case 11:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕚";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕦";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕛";
+                }
                 break;
         }
-        var nowTimeStr = nowHour > 12 ? (nowHour - 12) + ':' + nowMinute + " p.m." : nowHour + ':' + nowMinute + " a.m.";
+        var nowTimeStr = today.getHours() + 8 > 12 ? ((today.getHours() + 8) - 12) + ':' + nowMinute + " p.m." : (today.getHours() + 8) + ':' + nowMinute + " a.m.";
         var currentDateTime =
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
