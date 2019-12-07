@@ -133,16 +133,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     });
                     agent.add(payload);
 
-                    if (req.body.queryResult.queryText == "是") {
-                        return connect.disconnect(lineid).then(data => {
-                            if (data == -9) {
-                                agent.add(errorMsg);
-                            } else {
-                                agent.add('已解除帳號連結');
-                            }
-                        })
-                    } else if(req.body.queryResult.queryText == "否"){
-                        agent.add("好的～");
+                    if (req.body.queryResult.queryText == "否") {
+                        agent.add("好的～等你想好隨時都可以取消綁定哦。");
                     } else{
                         agent.add("我不太懂你的意思");
                     }
@@ -163,6 +155,16 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 return member.useLineIdSerchMember(lineid).then(data => {
                     agent.add(data.username + ' 你好，帳號已經連結成功囉～');
                 })
+            }
+        })
+    }
+    function logout(agent) {
+        var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
+        return connect.disconnect(lineid).then(data => {
+            if (data == -9) {
+                agent.add(errorMsg);
+            } else {
+                agent.add('已解除帳號連結');
             }
         })
     }
@@ -691,6 +693,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //綁定與解除綁定
     intentMap.set('login / logout', loginAndLogout);
     intentMap.set('login / logout - login', login);
+    intentMap.set('login / logout - logout', logout);
 
     intentMap.set('do what', doWhat);
     intentMap.set('NasalCongestion - custom', NasalCongestion);
