@@ -23,9 +23,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------
     // 常用訊息
     //------------------------------------
-    var noBabyMsg = '要先有寶寶才能用這個功能哦（請使用網頁版的Babyhub來新增寶寶的資料）。';
-    var noLoginMsg = '要先登入帳號才能使用該功能哦。';
-    var errorMsg = '❌程式好像出了點問題，請你再試一次唷。';
+    var noBabyMsg = '要先有👶寶寶才能用這個功能哦（請使用網頁版的Babyhub來新增寶寶的資料）。';
+    var noLoginMsg = '要先登入帳號才能使用該功能哦😢。';
+    var errorMsg = '❌程式好像出了點問題，請你再試一次唷。❌';
     //------------------------------------
     // 處理歡迎意圖
     //------------------------------------   
@@ -35,10 +35,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
             today.getDate() + '日(' +
-            today.getHours() + 8 + ':' + today.getMinutes() +
+            today.getHours() + ':' + today.getMinutes() +
             ')';
         var hour = today.getHours();
-        agent.add(req.body.queryResult.queryText + '～');
+        agent.add(req.body.queryResult.queryText + '👋～');
         agent.add("現在是" + currentDateTime);
     }
     function whoAmI(agent) {
@@ -60,9 +60,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             emoji="🤡";
                         }
                         agent.add("你是" + data.username + "，是個" + emoji + data.appellation + "。");
-                        agent.add("電子信箱是" + data.id);
+                        agent.add("📧電子信箱是" + data.id);
                     } else {
-                        agent.add("要先連結帳號我才知道你是誰哦！");
+                        agent.add("要先連結帳號我才知道你是誰哦😄！");
                     }
                 }
             })
@@ -89,10 +89,16 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             } else {
                                 var msg = "👶🏻寶寶資訊";
                                 data.forEach(item => {
+                                    var emoji;
+                                    if(item.gender=="男孩"){
+                                        emoji="👦";
+                                    }else if(item.gender=="女孩"){
+                                        emoji="👧";
+                                    }
                                     if (item.height == null) {
-                                        msg += '\n\n' + item.name + '是個' + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦～';
+                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢';
                                     } else {
-                                        msg += '\n\n' + item.name + '是個' + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤';
+                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤';
                                     }
                                 });
                                 agent.add(msg)
@@ -118,19 +124,19 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 } else { //已登入
                     const lineMessage = {
                         "type": "template",
-                        "altText": "確定要登出嗎？",
+                        "altText": "確定要登出嗎😢？",
                         "template": {
                             "type": "confirm",
-                            "text": "確定要登出嗎？",
+                            "text": "確定要登出嗎😢？",
                             "actions": [
                                 {
                                     "type": "message",
-                                    "label": "是",
+                                    "label": "是😭",
                                     "text": "是"
                                 },
                                 {
                                     "type": "message",
-                                    "label": "否",
+                                    "label": "否😄",
                                     "text": "否"
                                 }
                             ]
@@ -166,7 +172,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else {
-                agent.add('已解除帳號連結');
+                agent.add('已經解除帳號連結囉😢');
             }
         })
     }
