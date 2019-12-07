@@ -106,7 +106,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 if (data == -1) { //沒登入
                     agent.add("請照以下格式輸入帳號密碼來完成綁定。帳號;密碼");
-                    agent.add("像是：babyhub@gamil.com;babypassword");
+                    agent.add("像是：babyhub@gmail.com;password");
                 } else { //已登入
                     const lineMessage = {
                         "type": "template",
