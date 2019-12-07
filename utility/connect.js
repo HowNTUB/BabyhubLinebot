@@ -41,6 +41,23 @@ var disconnect = async function (lineid) {
     return result;
 }
 
+var register = async function (id, password, lineid) {
+    //存放結果
+    let result;
+    var date = new Date();
+    var today = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    //新增日記
+    await query('INSERT INTO member(id, password, lineid) values($1, $2, $3)', [id, password, lineid])
+        .then((data) => {
+            result = data.rowCount;  //新增資料數 
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+
+    //回傳執行結果
+    return result;
+}
+
 var isLogin = async function (lineid) {
     //存放結果
     let result = true;
@@ -61,4 +78,4 @@ var isLogin = async function (lineid) {
 //------------------------------------------
 
 //匯出
-module.exports = { linkStart, disconnect, isLogin };
+module.exports = { linkStart, disconnect, register, isLogin };

@@ -298,6 +298,18 @@ app.post('/dialogflow', express.json(), (req, res) => {
         })
     }
 
+    function register(agent) {
+        var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
+        var id = req.body.queryResult.parameters.id;
+        var password = req.body.queryResult.parameters.password;
+        return connect.register(id, password, lineid).then(data => {
+            if (data == -9) {
+                agent.add(errorMsg);
+            } else {
+                agent.add(data.username + '註冊成功');
+            }
+        })
+    }
     //------------------------------------   
     function NasalCongestion() {
         var number = req.body.queryResult.parameters.number;
@@ -818,6 +830,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('login / logout', loginAndLogout);
     intentMap.set('login / logout - login', login);
     intentMap.set('login / logout - logout', logout);
+    intentMap.set('register - costom', register);
 
     intentMap.set('do what', doWhat);
     intentMap.set('NasalCongestion - custom', NasalCongestion);
