@@ -35,11 +35,11 @@ app.post('/dialogflow', express.json(), (req, res) => {
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
             today.getDate() + '日(' +
-            today.getHours(+8) + ':' + today.getMinutes() +
+            (today.getHours() + 8) + ':' + today.getMinutes() +
             ')';
         var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
-        agent.add("現在是⏰" + currentDateTime);
+        agent.add("現在是" + currentDateTime);
     }
     function whoAmI(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
