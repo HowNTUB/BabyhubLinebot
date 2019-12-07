@@ -32,54 +32,55 @@ app.post('/dialogflow', express.json(), (req, res) => {
     function welcome() {
         var today = new Date();
         var nowHour = today.getHours() + 8;
-        var nowHourEmoji;
+        var nowMinute = today.getMinutes();
+        var nowTimeEmoji;
         switch (nowHour) {
             case 0, 12:
-                nowHourEmoji = "🕛";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕧" : "🕛";
                 break;
             case 1, 13:
-                nowHourEmoji = "🕐";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕜" : "🕐";
                 break;
             case 2, 14:
-                nowHourEmoji = "🕑";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕝" : "🕑";
                 break;
             case 3, 15:
-                nowHourEmoji = "🕒";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕞" : "🕒";
                 break;
             case 4, 16:
-                nowHourEmoji = "🕓";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕟" : "🕓";
                 break;
             case 5, 17:
-                nowHourEmoji = "🕔";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕠" : "🕔";
                 break;
             case 6, 18:
-                nowHourEmoji = "🕕";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕡" : "🕕";
                 break;
             case 7, 19:
-                nowHourEmoji = "🕖";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕢" : "🕖";
                 break;
             case 8, 20:
-                nowHourEmoji = "🕗";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕣" : "🕗";
                 break;
             case 9, 21:
-                nowHourEmoji = "🕘";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕤" : "🕘";
                 break;
             case 10, 22:
-                nowHourEmoji = "🕙";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕥" : "🕙";
                 break;
             case 11, 23:
-                nowHourEmoji = "🕚";
+                nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕦" : "🕚";
                 break;
         }
         var currentDateTime =
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
             today.getDate() + '日(' +
-            nowHourEmoji + nowHour + ':' + today.getMinutes() +
+            nowTimeEmoji + nowHour + ':' + nowMinute +
             ')';
         var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
-        agent.add("現在是" + currentDateTime );
+        agent.add("現在是" + currentDateTime);
     }
     function whoAmI(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
