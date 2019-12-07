@@ -51,7 +51,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     agent.add(errorMsg);
                 } else {
                     if (data.username != undefined) {
-                        agent.add("你是" + data.username + "，是個" + data.appellation + "。");
+                        var emoji;
+                        if(data.appellation == "爸爸"){
+                            emoji="👨";
+                        }else if(data.appellation == "媽媽"){
+                            emoji="👩";
+                        }else{
+                            emoji="🤡";
+                        }
+                        agent.add("你是" + data.username + "，是個" + emoji + data.appellation + "。");
                         agent.add("電子信箱是" + data.id);
                     } else {
                         agent.add("要先連結帳號我才知道你是誰哦！");
@@ -79,7 +87,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             if (data == -9) {
                                 agent.add(errorMsg);
                             } else {
-                                var msg = "寶寶資訊";
+                                var msg = "👶🏻寶寶資訊";
                                 data.forEach(item => {
                                     if (item.height == null) {
                                         msg += '\n\n' + item.name + '是個' + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦～';
@@ -147,7 +155,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add('帳號或密碼錯誤');
             } else {
                 return member.useLineIdSerchMember(lineid).then(data => {
-                    agent.add(data.username + ' 你好，帳號已經連結成功囉(shiny)～');
+                    agent.add(data.username + ' 你好，帳號已經連結成功囉❤️～');
                 })
             }
         })
@@ -299,7 +307,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     if (data == -9) {
                         agent.add(errorMsg);
                     } else {
-                        agent.add('日記新增成功(shiny)');
+                        agent.add('日記新增成功囉❤️');
                     }
                 })
             }
@@ -520,10 +528,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 agent.add(errorMsg);
                             } else {
                                 var msg = "";
-                                msg = msg + data.name + '的成長紀錄新增成功(shiny)\n';
-                                msg = msg + '身高:' + data.height + 'cm\n';
-                                msg = msg + '體重:' + data.weight + 'kg\n';
-                                msg = msg + '喝奶量:' + data.drinkmilk + 'cc';
+                                msg += data.name + '的成長紀錄新增成功囉❤️\n';
+                                msg += '身高:' + data.height + 'cm\n';
+                                msg += '體重:' + data.weight + 'kg\n';
+                                msg += '喝奶量:' + data.drinkmilk + 'cc';
                                 agent.add(msg);
                             }
                         })
