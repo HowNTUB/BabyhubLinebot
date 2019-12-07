@@ -106,14 +106,14 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 if (data == -1) { //沒登入
                     agent.add("請照以下格式輸入帳號密碼來完成綁定。帳號;密碼");
-                    agent.add("像是：babyhub@gmail.com;password");
+                    agent.add("像是：babyhub@gmail.com;mypassword");
                 } else { //已登入
                     const lineMessage = {
                         "type": "template",
                         "altText": "確定要登出嗎？",
                         "template": {
                             "type": "confirm",
-                            "text": "確定要登出嗎",
+                            "text": "確定要登出嗎？",
                             "actions": [
                                 {
                                     "type": "message",
