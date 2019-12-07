@@ -147,7 +147,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add('帳號或密碼錯誤');
             } else {
                 return member.useLineIdSerchMember(lineid).then(data => {
-                    agent.add(data.username + ' 你好，帳號已經連結成功囉～');
+                    agent.add(data.username + ' 你好，帳號已經連結成功囉(shiny)～');
                 })
             }
         })
@@ -299,7 +299,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     if (data == -9) {
                         agent.add(errorMsg);
                     } else {
-                        agent.add('日記新增成功');
+                        agent.add('日記新增成功(shiny)');
                     }
                 })
             }
@@ -520,7 +520,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 agent.add(errorMsg);
                             } else {
                                 var msg = "";
-                                msg = msg + data.name + '的成長紀錄新增成功\n';
+                                msg = msg + data.name + '的成長紀錄新增成功(shiny)\n';
                                 msg = msg + '身高:' + data.height + 'cm\n';
                                 msg = msg + '體重:' + data.weight + 'kg\n';
                                 msg = msg + '喝奶量:' + data.drinkmilk + 'cc';
