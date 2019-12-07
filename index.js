@@ -72,12 +72,13 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 nowTimeEmoji = (nowMinute > 15 && nowMinute < 45) ? "🕦" : "🕚";
                 break;
         }
+        var nowHourStr = nowHour > 12 ? (nowHour - 12) + "p.m." : nowHour + "a.m.";
         var currentDateTime =
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
-            today.getDate() + '日(' +
-            nowTimeEmoji + nowHour + ':' + nowMinute +
-            ')';
+            today.getDate() + '日（' +
+            nowTimeEmoji + nowHourStr + ':' + nowMinute +
+            '）';
         var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
         agent.add("現在是" + currentDateTime);
