@@ -33,6 +33,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     function welcome() {
         var today = new Date();
         var nowHour = (today.getHours() + 8) > 12 ? (today.getHours() + 8) - 12 : today.getHours() + 8;
+        console.log(nowHour);
         var nowMinute = today.getMinutes();
         var nowTimeEmoji;
         switch (nowHour) {
@@ -235,7 +236,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 if (data == -1) { //沒登入
                     agent.add("請照以下格式輸入帳號密碼來登入。\n帳號;密碼");
                     agent.add("像是：babyhub@gmail.com;mypassword");
-                    agent.add("若還沒有帳號的話，請先至官網註冊（點選📋圖文選單的Babyhub 🐻logo）。")
+                    agent.add("如果還沒有帳號的話，請先至官網註冊（點選📋圖文選單的Babyhub 🐻logo）。")
                 } else { //已登入
                     const lineMessage = {
                         "type": "template",
