@@ -1,6 +1,5 @@
 "use strict";
 
-
 const express = require('express')
 var moment = require('moment');
 const { WebhookClient } = require('dialogflow-fulfillment')
@@ -12,7 +11,6 @@ const diary = require('./utility/diary');
 const growingrecord = require('./utility/growingrecord');
 const { Card, Suggestion } = require('dialogflow-fulfillment');
 const { Payload } = require('dialogflow-fulfillment');
-
 
 app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------
@@ -33,7 +31,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
     function welcome() {
         var today = new Date();
         var nowHour = (today.getHours() + 8) > 12 ? (today.getHours() + 8) - 12 : today.getHours() + 8;
-        console.log(nowHour);
         var nowMinute = today.getMinutes();
         var nowTimeEmoji;
         switch (nowHour) {
@@ -145,6 +142,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     nowTimeEmoji = "🕛";
                 }
                 break;
+            case 11:
+                if (nowMinute >= 0 && nowMinute < 15) {
+                    nowTimeEmoji = "🕛";
+                } else if (nowMinute >= 15 && nowMinute < 45) {
+                    nowTimeEmoji = "🕧";
+                } else if (nowMinute >= 45 && nowMinute < 60) {
+                    nowTimeEmoji = "🕐";
+                }
+                break;
         }
         var nowTimeStr = today.getHours() + 8 > 12 ? ((today.getHours() + 8) - 12) + ':' + nowMinute + " p.m." : (today.getHours() + 8) + ':' + nowMinute + " a.m.";
         var currentDateTime =
@@ -152,7 +158,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
             (today.getMonth() + 1) + '月' +
             today.getDate() + '日（' +
             nowTimeEmoji + nowTimeStr + '）';
-        var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
         agent.add("現在是" + currentDateTime);
     }
