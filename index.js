@@ -35,7 +35,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             today.getFullYear() + '年' +
             (today.getMonth() + 1) + '月' +
             today.getDate() + '日(' +
-            today.getHours() + ':' + today.getMinutes() +
+            today.getHours(+8) + ':' + today.getMinutes() +
             ')';
         var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
@@ -96,9 +96,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                         emoji="👧";
                                     }
                                     if (item.height == null) {
-                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢';
+                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢';
                                     } else {
-                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤';
+                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤';
                                     }
                                 });
                                 agent.add(msg)
