@@ -39,7 +39,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             ')';
         var hour = today.getHours();
         agent.add(req.body.queryResult.queryText + '👋～');
-        agent.add("現在是" + currentDateTime);
+        agent.add("現在是⏰" + currentDateTime);
     }
     function whoAmI(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
@@ -158,10 +158,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else if (data == 0) {
-                agent.add('帳號或密碼錯誤');
+                agent.add('❌帳號或密碼錯誤');
             } else {
                 return member.useLineIdSerchMember(lineid).then(data => {
-                    agent.add(data.username + ' 你好，帳號已經連結成功囉❤️～');
+                    agent.add(data.username + '登入成功囉❤️～');
                 })
             }
         })
@@ -172,7 +172,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else {
-                agent.add('已經解除帳號連結囉😢');
+                agent.add('登出成功囉😢');
             }
         })
     }
@@ -486,12 +486,12 @@ app.post('/dialogflow', express.json(), (req, res) => {
         var height = req.body.queryResult.parameters.height;
         return growingrecord.useLineidGetGrowingrecord(lineid).then(data => {
             if (data == -9) {
-                agent.add('執行錯誤1');
+                agent.add(errorMsg);
             } else {
                 var serno = data.serno;
                 return growingrecord.addGrowingRecordHeight(serno, height).then(data => {
                     if (data == -9) {
-                        agent.add('執行錯誤2');
+                        agent.add(errorMsg);
                     } else {
                         agent.add('請輸入寶寶的體重(kg)');
                     }
