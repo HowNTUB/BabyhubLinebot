@@ -282,7 +282,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add('❌帳號或密碼錯誤');
             } else {
                 return member.useLineIdSerchMember(lineid).then(data => {
-                    agent.add(data.username + '登入成功囉❤️～');
+                    agent.add(data.username + '登入成功囉❤️');
                 })
             }
         })
@@ -732,7 +732,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         var msg = '';
                         data.forEach(item => {
-                            msg = msg + '\n\n' + moment(item.recorddate).format("YYYY-MM-DD") + '：' + '\n身長 ' + item.height + 'cm' + '\n體重 ' + item.weight + 'kg' + '\n喝奶量 ' + item.drinkmilk + 'cc';
+                            msg = msg + '\n\n' + moment(item.recorddate).format("D") + '號：' + '\n身長 ' + item.height + 'cm' + '\n體重 ' + item.weight + 'kg' + '\n喝奶量 ' + item.drinkmilk + 'cc';
                         });
                         agent.add('📖' + year + '年' + month + '月的成長紀錄\n' + msg);
                     }
