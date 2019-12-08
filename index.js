@@ -519,7 +519,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         var msg = '';
                         data.forEach(item => {
-                            msg = msg + '\n' + moment(item.diarydate).format("YYYY-MM-DD") + '：' + item.diary;
+                            msg = msg + '\n\n' + moment(item.diarydate).format("DD") + '號：\n' + item.diary;
                         });
                         agent.add('📖' + year + '年' + month + '月的日記\n' + msg);
                     }
@@ -732,7 +732,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         var msg = '';
                         data.forEach(item => {
-                            msg = msg + '\n\n' + moment(item.recorddate).format("D") + '號：' + '\n身長 ' + item.height + 'cm' + '\n體重 ' + item.weight + 'kg' + '\n喝奶量 ' + item.drinkmilk + 'cc';
+                            msg += '\n\n\n' + moment(item.recorddate).format("D") + '號：' + '\n身長 ' + item.height + 'cm' + '\n體重 ' + item.weight + 'kg' + '\n喝奶量 ' + item.drinkmilk + 'cc';
                         });
                         agent.add('📖' + year + '年' + month + '月的成長紀錄\n' + msg);
                     }
@@ -804,7 +804,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 agent.add(errorMsg);
                             } else {
                                 data.forEach(item => {
-                                    var dateStr = moment(item.diarydate).format("YYYY-MM-DD");
+                                    var dateStr = moment(item.diarydate).format("DD號");
                                     msg = msg + '\n\n' + dateStr + '：' + '\n身長 ' + item.height + 'cm' + '\n體重 ' + item.weight + 'kg' + '\n喝奶量 ' + item.drinkmilk + ' ml';
                                 });
                                 agent.add('📖' + babyname + '的成長紀錄\n\n' + msg);
