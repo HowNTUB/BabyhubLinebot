@@ -21,7 +21,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------
     // 常用訊息
     //------------------------------------
-    var noBabyMsg = '要先有👶寶寶才能用這個功能哦（請使用網頁版的Babyhub來新增寶寶的資料）。';
+    var noBabyMsg = '要先有👶🏻寶寶才能用這個功能哦（請使用網頁版的Babyhub來新增👶🏻寶寶的資料）。';
     var noLoginMsg = '要先登入帳號才能使用該功能哦😢。';
     var errorMsg = '❌程式好像出了點問題，請你再試一次唷。❌';
     //------------------------------------
@@ -211,9 +211,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 data.forEach(item => {
                                     var emoji;
                                     if (item.gender == "男孩") {
-                                        emoji = "👦";
+                                        emoji = "👦🏻";
                                     } else if (item.gender == "女孩") {
-                                        emoji = "👧";
+                                        emoji = "👧🏻";
                                     }
                                     if (item.height == null) {
                                         msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢';
@@ -293,7 +293,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else {
-                agent.add('登出成功囉');
+                agent.add('登出成功囉👍');
             }
         })
     }
@@ -306,7 +306,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else {
-                agent.add('註冊成功');
+                agent.add('註冊成功👍');
             }
         })
     }
@@ -496,7 +496,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else if (data == -1) {
                 agent.add(noLoginMsg);
             } else {
-                agent.add('請照格式輸入年月，像是');
+                agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
             }
         })
@@ -519,7 +519,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         var msg = '';
                         data.forEach(item => {
-                            msg = msg + '\n\n' + moment(item.diarydate).format("DD") + '號：\n' + item.diary;
+                            msg = msg + '\n\nday' + moment(item.diarydate).format("D") + '：\n' + item.diary;
                         });
                         agent.add('📖' + year + '年' + month + '月的日記\n' + msg);
                     }
@@ -596,14 +596,14 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else if (data == 0) {
-                agent.add('❌沒有找到您的寶寶，請確認有沒有正確的輸入寶寶名字。');
+                agent.add('❌沒有找到你的寶寶，請確認有沒有正確的輸入👶🏻寶寶名字。');
             } else {
                 var babyno = data.babyno;
                 return growingrecord.addGrowingRecord(babyno).then(data => {
                     if (data == -9) {
                         agent.add(errorMsg);
                     } else {
-                        agent.add('請輸入寶寶的身高(cm)');
+                        agent.add('請輸入寶寶的📏身高(cm)');
                     }
                 })
             }
@@ -621,7 +621,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     if (data == -9) {
                         agent.add(errorMsg);
                     } else {
-                        agent.add('請輸入寶寶的體重(kg)');
+                        agent.add('請輸入寶寶的🎛️體重(kg)');
                     }
                 })
             }
@@ -639,7 +639,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     if (data == -9) {
                         agent.add(errorMsg);
                     } else {
-                        agent.add('請輸入寶寶的喝奶量(cc)');
+                        agent.add('請輸入寶寶的🍼喝奶量(cc)');
                     }
                 })
             }
@@ -663,9 +663,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             } else {
                                 var msg = "";
                                 msg += data.name + '的成長紀錄新增成功囉❤️\n';
-                                msg += '身高:' + data.height + 'cm\n';
-                                msg += '體重:' + data.weight + 'kg\n';
-                                msg += '喝奶量:' + data.drinkmilk + 'cc';
+                                msg += '📏身長:' + data.height + 'cm\n';
+                                msg += '🎛️體重:' + data.weight + 'kg\n';
+                                msg += '🍼喝奶量:' + data.drinkmilk + 'cc';
                                 agent.add(msg);
                             }
                         })
@@ -696,14 +696,14 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             if (data == -9) {
                                 agent.add(errorMsg);
                             } else {
-                                var name = '請問要查詢哪個寶寶的成長紀錄？\n';
+                                var name = '請問要查詢哪個👶🏻寶寶的成長紀錄？\n';
                                 var babyname;
                                 data.forEach(item => {
                                     name = name + '\n' + item.name;
                                     babyname = item.name;
                                 });
                                 agent.add(name);
-                                agent.add('請照格式輸入寶寶名字與年月，像是');
+                                agent.add('請照格式輸入👶🏻寶寶名字與年月，像是');
                                 agent.add(babyname + ';' + today.getFullYear() + '/' + (today.getMonth() + 1));
                             }
                         })
@@ -721,7 +721,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             if (data == -9) {
                 agent.add(errorMsg);
             } else if (data == 0) {
-                agent.add('沒有找到您的寶寶，請確認有沒有正確的輸入寶寶名字。');
+                agent.add('❌沒有找到你的寶寶👶🏻，請確認有沒有正確的輸入寶寶名字👶🏻。');
             } else {
                 babyno = data.babyno;
                 return growingrecord.searchGrowingRecordByYearMonth(babyno, year, month).then(data => {
@@ -732,7 +732,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         var msg = '';
                         data.forEach(item => {
-                            msg += '\n\n\n' + moment(item.recorddate).format("D") + '號：' + '\n身長 ' + item.height + 'cm' + '\n體重 ' + item.weight + 'kg' + '\n喝奶量 ' + item.drinkmilk + 'cc';
+                            msg += '\n\n\n' + moment(item.recorddate).format("D") + '號：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc';
                         });
                         agent.add('📖' + year + '年' + month + '月的成長紀錄\n' + msg);
                     }
@@ -766,7 +766,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     } else if (data == 0) {
                                         agent.add(noBabyMsg);
                                     } else {
-                                        var name = '請問要查詢哪個寶寶的生長紀錄？\n';
+                                        var name = '請問要查詢哪個👶🏻寶寶的生長紀錄？\n';
                                         data.forEach(item => {
                                             name = name + '\n' + item.name;
                                         });
@@ -795,7 +795,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     if (data == -9) {
                         agent.add(errorMsg);
                     } else if (data == 0) {
-                        agent.add('❌沒有找到你的寶寶，請確認有沒有正確的輸入寶寶名字。');
+                        agent.add('❌沒有找到你的寶寶👶🏻，請確認有沒有正確的輸入寶寶名字👶🏻。');
                     } else {
                         babyno = data.babyno;
                         return growingrecord.searchAllGrowingRecord(babyno).then(data => {
