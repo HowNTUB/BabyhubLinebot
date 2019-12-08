@@ -45,7 +45,7 @@ var register = async function (id, password, lineid) {
     //存放結果
     let result;
     //新增日記
-    await query('INSERT INTO member(id, password, lineid) values($1, $2, $3)', [id, password, lineid])
+    await query("INSERT INTO member(id, username, password, appellation lineid) values($1, 'test', $2, '其他' $3)", [id, password, lineid])
         .then((data) => {
             result = data.rowCount;  //新增資料數 
         }, (error) => {
