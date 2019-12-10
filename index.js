@@ -501,7 +501,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
                 const lineMessage = {
                     "type": "template",
-                    "altText": "這是一個確認樣板",
+                    "altText": "請選擇要查詢的日期",
                     "template": {
                         "type": "confirm",
                         "text": "是否確認要訂房?",
@@ -510,9 +510,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "label": "請選擇日期",
                             "data": "訂房日期",
                             "mode": "date",
-                            "initial": "2018-11",
-                            "max": "2018-12",
-                            "min": "2018-11"
+                            "initial": "2018-11-20",
+                            "max": "2018-12-31",
+                            "min": "2018-11-20"
                         },
                         {
                             "type": "message",
@@ -525,6 +525,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     sendAsMessage: true
                 });
                 agent.add(payload);
+                console.log(req.body.originalDetectIntentRequest.payload.data);
             }
         })
     }
