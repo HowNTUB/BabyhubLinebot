@@ -857,6 +857,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
         agent.add(payload);
     }
     function Test2(agent) {
+        console.log(res);
         console.log(req.body.queryResult);
         console.log(req.body.originalDetectIntentRequest.payload.data);
     }
