@@ -500,32 +500,43 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
 
                 const lineMessage = {
-                    "type": "template",
-                    "altText": "請選擇要查詢的日期",
-                    "template": {
-                        "type": "confirm",
-                        "text": "請選擇要查詢的日期?",
-                        "actions": [{
-                            "type": "datetimepicker",
-                            "label": "請選擇日期",
-                            "data": "查詢日期",
-                            "mode": "date",
-                            "initial": "2018-11-20",
-                            "max": "2018-12-31",
-                            "min": "2018-11-20"
-                        },
-                        {
-                            "type": "message",
-                            "label": "不查詢了",
-                            "text": "否"
-                        }]
+                    "type": "text", // ①
+                    "text": "Select your favorite food category or send me your location!",
+                    "quickReply": { // ②
+                        "items": [
+                            {
+                                "type": "action", // ③
+                                "imageUrl": "https://example.com/sushi.png",
+                                "action": {
+                                    "type": "message",
+                                    "label": "Sushi",
+                                    "text": "Sushi"
+                                }
+                            },
+                            {
+                                "type": "action",
+                                "imageUrl": "https://example.com/tempura.png",
+                                "action": {
+                                    "type": "message",
+                                    "label": "Tempura",
+                                    "text": "Tempura"
+                                }
+                            },
+                            {
+                                "type": "action", // ④
+                                "action": {
+                                    "type": "location",
+                                    "label": "Send location"
+                                }
+                            }
+                        ]
                     }
                 };
                 var payload = new Payload('LINE', lineMessage, {
                     sendAsMessage: true
                 });
                 agent.add(payload);
-                console.log(req.body);
+                console.log(req.body.originalDetectIntentRequest.payload.data);
             }
         })
     }
