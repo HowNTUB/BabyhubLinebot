@@ -769,7 +769,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
         var month = req.body.queryResult.parameters.month;
         var babyno;
         console.log(req.body.queryResult.fulfillmentText)
-        console.log(req.body.fulfillmentMessages)
+        console.log(req.body.queryResult.fulfillmentMessages)
         return baby.nameGetNo(babyname).then(data => {
             if (data == -9) {
                 agent.add(errorMsg);
