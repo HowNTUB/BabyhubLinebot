@@ -508,7 +508,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
-                var date = event.postback.data;
                 const lineMessage = {
                     "type": "template",
                     "altText": "這是一個確認樣板",
@@ -535,9 +534,12 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     sendAsMessage: true
                 });
                 agent.add(payload);
-                console.log(date);
             }
         })
+    }
+    function searchDiaryByYearMonth2(agent) {
+        console.log(req.body.queryResult);
+        console.log(req.body.originalDetectIntentRequest.payload.data);
     }
     function searchDiaryByYearMonth2(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
@@ -620,6 +622,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 var payload = new Payload('LINE', lineMessage, {
                                     sendAsMessage: true
                                 });
+                                agent.add("請選擇要紀錄的👶🏻寶寶");
                                 agent.add(payload);
                             }
                         })
@@ -882,6 +885,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('search all diary', searchAllDiary);
     intentMap.set('search diary by year and month', searchDiaryByYearMonth);
     intentMap.set('search diary by year and month - custom', searchDiaryByYearMonth2);
+    intentMap.set('search diary by year and month - custom-2', searchDiaryByYearMonthTest);
     //成長紀錄功能
     intentMap.set('insert growing record', insertGrowingRecord);
     intentMap.set('insert growing record insert', insertGrowingRecordInsert);
