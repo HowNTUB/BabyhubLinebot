@@ -497,7 +497,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             }
         })
     }
-    function searchDiaryByYearMonth(agent) {
+    function searchDiaryByYearMonth(agent,event) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
         var today = new Date();
         return member.lineidGetId(lineid).then(data => {
@@ -508,7 +508,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
-
+                var date = event.postback.data;
                 const lineMessage = {
                     "type": "template",
                     "altText": "這是一個確認樣板",
@@ -518,7 +518,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         "actions": [{
                             "type": "datetimepicker",
                             "label": "請選擇日期",
-                            "text": "訂房日期",
+                            "data": "訂房日期",
                             "mode": "date",
                             "initial": "2019-11-20",
                             "max": "2020-12-31",
@@ -535,7 +535,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     sendAsMessage: true
                 });
                 agent.add(payload);
-                console.log(req.body.originalDetectIntentRequest.payload.data);
+                console.log(date);
             }
         })
     }
