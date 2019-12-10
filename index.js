@@ -499,19 +499,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
 
-                const lineMessage = {
-                    "type": "datetimepicker",
-                    "label": "Select date",
-                    "data": "storeId=12345",
-                    "mode": "datetime",
-                    "initial": "2019-12",
-                    "max": "2020-12",
-                    "min": "2000-12"
-                };
-                var payload = new Payload('LINE', lineMessage, {
-                    sendAsMessage: true
-                });
-                agent.add(payload);
             }
         })
     }
