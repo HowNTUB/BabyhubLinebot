@@ -857,9 +857,11 @@ app.post('/dialogflow', express.json(), (req, res) => {
         agent.add(payload);
     }
     function Test2(agent) {
-        console.log(res);
-        console.log(req.body.queryResult);
-        console.log(req.body.originalDetectIntentRequest.payload.data);
+        agent.add('request.body:'+JSON.stringify(request.body));      
+        agent.add('傳入訊息:'+request.body.queryResult.queryText);
+        agent.add('action:'+request.body.queryResult.action);
+        agent.add('userId:'+request.body.originalDetectIntentRequest.payload.data.source.userId);
+        agent.add('timestamp:'+request.body.originalDetectIntentRequest.payload.data.timestamp);      
     }
 
     //------------------------------------
