@@ -233,6 +233,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     var payload = new Payload('LINE', lineMessage, {
                                         sendAsMessage: true
                                     });
+                                    agent.add(payload);
                                     if (item.height == null) {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
                                     } else {
@@ -566,7 +567,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 agent.add(errorMsg);
                             } else {
                                 var msg = [];
-                                data.forEach(function (item, index, array) {
+                                data.forEach(function (item, index) {
                                     if (index == 0) {
                                         msg.push({
                                             "imageUrl": "https://i.imgur.com/FqSRyzU.png",
@@ -714,7 +715,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 agent.add(errorMsg);
                             } else {
                                 var msg = [];
-                                data.forEach(function (item, index, array) {
+                                data.forEach(function (item, index) {
                                     if (index == 0) {
                                         msg.push({
                                             "imageUrl": "https://i.imgur.com/FqSRyzU.png",
