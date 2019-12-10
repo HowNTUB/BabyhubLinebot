@@ -508,36 +508,36 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
-                const lineMessage = {
-                    "type": "template",
-                    "altText": "這是一個確認樣板",
-                    "template": {
-                        "type": "confirm",
-                        "text": "是否確認要訂房?",
-                        "actions": [{
-                            "type": "datetimepicker",
-                            "label": "請選擇日期",
-                            "data": "訂房日期",
-                            "mode": "date",
-                            "initial": "2019-11-20",
-                            "max": "2020-12-31",
-                            "min": "2018-11-20"
-                        },
-                        {
-                            "type": "message",
-                            "label": "放棄訂房",
-                            "text": "否"
-                        }]
-                    }
-                };
-                var payload = new Payload('LINE', lineMessage, {
-                    sendAsMessage: true
-                });
-                agent.add(payload);
             }
         })
     }
-    function searchDiaryByYearMonthTest(agent) {
+    function Test(agent) {
+        const lineMessage = {
+            "type": "template",
+            "altText": "這是一個確認樣板",
+            "template": {
+                "type": "confirm",
+                "text": "是否確認要訂房?",
+                "actions": [{
+                    "type": "datetimepicker",
+                    "label": "請選擇日期",
+                    "data": "訂房日期",
+                    "mode": "date",
+                    "initial": "2019-11-20",
+                    "max": "2020-12-31",
+                    "min": "2018-11-20"
+                },
+                {
+                    "type": "message",
+                    "label": "放棄訂房",
+                    "text": "否"
+                }]
+            }
+        };
+        var payload = new Payload('LINE', lineMessage, {
+            sendAsMessage: true
+        });
+        agent.add(payload);
         console.log(req.body.queryResult);
         console.log(req.body.originalDetectIntentRequest.payload.data);
     }
@@ -896,6 +896,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('search all growing record - custom', searchAllGrowingRecord2);
     intentMap.set('search growing record by name and year and month', searchGrowingRecordByYearMonth);
     intentMap.set('search growing record by name and year and month - custom', searchGrowingRecordByYearMonth2);
+    
+    intentMap.set('Test', Test);
 
     //------------------------------------
     agent.handleRequest(intentMap);
