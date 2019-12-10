@@ -510,9 +510,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "label": "請選擇日期",
                             "data": "訂房日期",
                             "mode": "date",
-                            "initial": "2018-11-20",
-                            "max": "2018-12-31",
-                            "min": "2018-11-20"
+                            "initial": "2018-11",
+                            "max": "2018-12",
+                            "min": "2018-11"
                         },
                         {
                             "type": "message",
