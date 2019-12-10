@@ -500,36 +500,25 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
 
                 const lineMessage = {
-                    "type": "text", // ①
-                    "text": "Select your favorite food category or send me your location!",
-                    "quickReply": { // ②
-                        "items": [
-                            {
-                                "type": "action", // ③
-                                "imageUrl": "https://example.com/sushi.png",
-                                "action": {
-                                    "type": "message",
-                                    "label": "Sushi",
-                                    "text": "Sushi"
-                                }
-                            },
-                            {
-                                "type": "action",
-                                "imageUrl": "https://example.com/tempura.png",
-                                "action": {
-                                    "type": "message",
-                                    "label": "Tempura",
-                                    "text": "Tempura"
-                                }
-                            },
-                            {
-                                "type": "action", // ④
-                                "action": {
-                                    "type": "location",
-                                    "label": "Send location"
-                                }
-                            }
-                        ]
+                    "type": "template",
+                    "altText": "這是一個確認樣板",
+                    "template": {
+                        "type": "confirm",
+                        "text": "是否確認要訂房?",
+                        "actions": [{
+                            "type": "datetimepicker",
+                            "label": "請選擇日期",
+                            "data": "訂房日期",
+                            "mode": "date",
+                            "initial": "2019-11-20",
+                            "max": "2020-12-31",
+                            "min": "2018-11-20"
+                        },
+                        {
+                            "type": "message",
+                            "label": "放棄訂房",
+                            "text": "否"
+                        }]
                     }
                 };
                 var payload = new Payload('LINE', lineMessage, {
