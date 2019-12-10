@@ -857,11 +857,16 @@ app.post('/dialogflow', express.json(), (req, res) => {
         agent.add(payload);
     }
     function Test2(agent) {
-        agent.add('request.body:'+JSON.stringify(request.body));      
-        agent.add('傳入訊息:'+request.body.queryResult.queryText);
-        agent.add('action:'+request.body.queryResult.action);
-        agent.add('userId:'+request.body.originalDetectIntentRequest.payload.data.source.userId);
-        agent.add('timestamp:'+request.body.originalDetectIntentRequest.payload.data.timestamp);      
+
+        console.log('觀察以下物件********************');
+        console.log(req.headers);
+        console.log(JSON.stringify(req.body));
+        console.log('*******************************');
+        agent.add('request.body:' + JSON.stringify(request.body));
+        agent.add('傳入訊息:' + request.body.queryResult.queryText);
+        agent.add('action:' + request.body.queryResult.action);
+        agent.add('userId:' + request.body.originalDetectIntentRequest.payload.data.source.userId);
+        agent.add('timestamp:' + request.body.originalDetectIntentRequest.payload.data.timestamp);
     }
 
     //------------------------------------
@@ -901,7 +906,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('search all growing record - custom', searchAllGrowingRecord2);
     intentMap.set('search growing record by name and year and month', searchGrowingRecordByYearMonth);
     intentMap.set('search growing record by name and year and month - custom', searchGrowingRecordByYearMonth2);
-    
+
     intentMap.set('Test', Test);
     intentMap.set('Test - custom', Test2);
 
