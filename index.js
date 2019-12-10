@@ -885,7 +885,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('search all diary', searchAllDiary);
     intentMap.set('search diary by year and month', searchDiaryByYearMonth);
     intentMap.set('search diary by year and month - custom', searchDiaryByYearMonth2);
-    intentMap.set('search diary by year and month - custom-2', searchDiaryByYearMonthTest);
     //成長紀錄功能
     intentMap.set('insert growing record', insertGrowingRecord);
     intentMap.set('insert growing record insert', insertGrowingRecordInsert);
