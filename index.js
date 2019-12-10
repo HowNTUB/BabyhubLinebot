@@ -499,7 +499,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
 
-                const date = event.postback.data;
                 const lineMessage = {
                     "type": "datetimepicker",
                     "label": "Select date",
@@ -513,7 +512,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     sendAsMessage: true
                 });
                 agent.add(payload);
-                console.log(date);
             }
         })
     }
