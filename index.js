@@ -751,6 +751,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     }
     function searchGrowingRecordByYearMonthInBaby(agent) {
         var babyname = req.body.queryResult.parameters.babyname;
+        var today = new Date();
         return baby.nameGetNo(babyname).then(data => {
             if (data == -9) {
                 agent.add(errorMsg);
