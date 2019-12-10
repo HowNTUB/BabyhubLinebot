@@ -864,6 +864,12 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     }
     function Test3(agent) {
+        console.log('*******************************');
+        console.log(req.body.queryResult.parameters);
+        console.log('*******************************');
+        console.log(req);
+        console.log('*******************************');
+        console.log(res);
         agent.add("安安"+req.body.queryResult.parameters.Test-custom-followup.any);
     }
 
