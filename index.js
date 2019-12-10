@@ -217,7 +217,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             if (data == -9) {
                                 agent.add(errorMsg);
                             } else {
-                                var msg = "👶🏻寶寶資訊";
+                                agent.add("👶🏻寶寶資訊");
                                 data.forEach(item => {
                                     var emoji;
                                     if (item.gender == "男孩") {
@@ -225,13 +225,20 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     } else if (item.gender == "女孩") {
                                         emoji = "👧🏻";
                                     }
+                                    const lineMessage = {
+                                        "type": "image",
+                                        "originalContentUrl": "https://i.imgur.com/FqSRyzU.png",
+                                        "previewImageUrl": "https://i.imgur.com/FqSRyzU.png"
+                                    };
+                                    var payload = new Payload('LINE', lineMessage, {
+                                        sendAsMessage: true
+                                    });
                                     if (item.height == null) {
-                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢';
+                                        agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
                                     } else {
-                                        msg += '\n\n' + item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤';
+                                        agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤');
                                     }
                                 });
-                                agent.add(msg)
                             }
                         })
                     }
