@@ -504,11 +504,11 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     "altText": "請選擇要查詢的日期",
                     "template": {
                         "type": "confirm",
-                        "text": "是否確認要訂房?",
+                        "text": "請選擇要查詢的日期?",
                         "actions": [{
                             "type": "datetimepicker",
                             "label": "請選擇日期",
-                            "data": "訂房日期",
+                            "data": "查詢日期",
                             "mode": "date",
                             "initial": "2018-11-20",
                             "max": "2018-12-31",
@@ -516,7 +516,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         },
                         {
                             "type": "message",
-                            "label": "放棄訂房",
+                            "label": "不查詢了",
                             "text": "否"
                         }]
                     }
@@ -525,7 +525,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     sendAsMessage: true
                 });
                 agent.add(payload);
-                console.log(req.body.originalDetectIntentRequest.payload.data);
+                console.log(req.body);
             }
         })
     }
