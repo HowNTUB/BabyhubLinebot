@@ -497,7 +497,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             }
         })
     }
-    function searchDiaryByYearMonth(agent,event) {
+    function searchDiaryByYearMonth(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
         var today = new Date();
         return member.lineidGetId(lineid).then(data => {
@@ -537,7 +537,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             }
         })
     }
-    function searchDiaryByYearMonth2(agent) {
+    function searchDiaryByYearMonthTest(agent) {
         console.log(req.body.queryResult);
         console.log(req.body.originalDetectIntentRequest.payload.data);
     }
