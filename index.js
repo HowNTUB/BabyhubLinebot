@@ -1,9 +1,9 @@
 "use strict";
 
-const express = require('express')
+const express = require('express');
 var moment = require('moment');
-const { WebhookClient } = require('dialogflow-fulfillment')
-const app = express()
+const { WebhookClient } = require('dialogflow-fulfillment');
+const app = express();
 const connect = require('./utility/connect');
 const member = require('./utility/member');
 const baby = require('./utility/baby');
