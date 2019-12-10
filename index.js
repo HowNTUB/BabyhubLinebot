@@ -864,7 +864,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     }
     function Test3(agent) {
-        agent.add("安安"+req.body.queryResult.parameters.any);
+        agent.add("安安"+req.body.queryResult.parameters.Test-custom-followup.any);
     }
 
     //------------------------------------
