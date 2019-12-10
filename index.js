@@ -855,6 +855,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
             sendAsMessage: true
         });
         agent.add(payload);
+        console.log('觀察以下物件********************');
+        console.log(req.headers);
+        console.log(JSON.stringify(req.body));
+        console.log('*******************************');
+        agent.add('request.body:' + JSON.stringify(request.body));
+        agent.add('傳入訊息:' + request.body.queryResult.queryText);
+        agent.add('action:' + request.body.queryResult.action);
+        agent.add('userId:' + request.body.originalDetectIntentRequest.payload.data.source.userId);
+        agent.add('timestamp:' + request.body.originalDetectIntentRequest.payload.data.timestamp);
     }
     function Test2(agent) {
 
