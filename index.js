@@ -743,7 +743,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         var msg = '';
                         data.forEach(item => {
-                            msg += '\n\n\n' + moment(item.recorddate).format("D") + '號：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc';
+                            msg += '\n\n\nday' + moment(item.recorddate).format("D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc';
                         });
                         agent.add('📖' + year + '年' + month + '月的成長紀錄\n' + msg);
                     }
@@ -862,15 +862,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
     }
     function Test2(agent) {
 
-        console.log('觀察以下物件********************');
-        console.log(req.headers);
-        console.log(JSON.stringify(req.body));
-        console.log('*******************************');
-        agent.add('request.body:' + JSON.stringify(request.body));
-        agent.add('傳入訊息:' + request.body.queryResult.queryText);
-        agent.add('action:' + request.body.queryResult.action);
-        agent.add('userId:' + request.body.originalDetectIntentRequest.payload.data.source.userId);
-        agent.add('timestamp:' + request.body.originalDetectIntentRequest.payload.data.timestamp);
+    }
+    function Test3(agent) {
+        agent.add("安安"+req.body.queryResult.parameters.any);
     }
 
     //------------------------------------
@@ -913,6 +907,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     intentMap.set('Test', Test);
     intentMap.set('Test - custom', Test2);
+    intentMap.set('Test - custom - custom', Test3);
 
     //------------------------------------
     agent.handleRequest(intentMap);
