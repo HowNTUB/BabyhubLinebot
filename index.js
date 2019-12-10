@@ -689,7 +689,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function searchGrowingRecordByYearMonth(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
-        var today = new Date();
         return member.lineidGetId(lineid).then(data => {
             if (data == -9) {
                 agent.add(errorMsg);
@@ -707,15 +706,42 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             if (data == -9) {
                                 agent.add(errorMsg);
                             } else {
-                                var name = '請問要查詢哪個👶🏻寶寶的成長紀錄？\n';
-                                var babyname;
-                                data.forEach(item => {
-                                    name = name + '\n' + item.name;
-                                    babyname = item.name;
+                                var msg = [];
+                                data.forEach(function (item, index, array) {
+                                    if (index == 0) {
+                                        msg.push({
+                                            "imageUrl": "https://i.imgur.com/FqSRyzU.png",
+                                            "action": {
+                                                "type": "message",
+                                                "label": item.name,
+                                                "text": item.name
+                                            }
+                                        });
+                                    } else {
+                                        msg.push({
+                                            "imageUrl": "https://i.imgur.com/FqSRyzU.png",
+                                            "action": {
+                                                "type": "message",
+                                                "label": item.name,
+                                                "text": item.name
+                                            }
+                                        });
+                                    }
                                 });
-                                agent.add(name);
-                                agent.add('請照格式輸入👶🏻寶寶名字與年月，像是');
-                                agent.add(babyname + ';' + today.getFullYear() + '/' + (today.getMonth() + 1));
+                                const lineMessage = {
+                                    "type": "template",
+                                    "altText": "this is a image carousel template",
+                                    "template": {
+                                        "type": "image_carousel",
+                                        "columns":
+                                            msg
+                                    }
+                                };
+                                var payload = new Payload('LINE', lineMessage, {
+                                    sendAsMessage: true
+                                });
+                                agent.add("請選擇要紀錄的👶🏻寶寶");
+                                agent.add(payload);
                             }
                         })
                     }
@@ -723,8 +749,21 @@ app.post('/dialogflow', express.json(), (req, res) => {
             }
         })
     }
-    function searchGrowingRecordByYearMonth2(agent) {
+    function searchGrowingRecordByYearMonthInBaby(agent) {
         var babyname = req.body.queryResult.parameters.babyname;
+        return baby.nameGetNo(babyname).then(data => {
+            if (data == -9) {
+                agent.add(errorMsg);
+            } else if (data == 0) {
+                agent.add('❌沒有找到你的寶寶👶🏻，請確認有沒有正確的輸入寶寶名字👶🏻。');
+            } else {                
+                agent.add('請照格式輸入年月📆，像是');
+                agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
+            }
+        })
+    }
+    function searchGrowingRecordByYearMonthInYearMonth(agent) {
+        var babyname = req.body.queryResult.fulfillmentText;
         var year = req.body.queryResult.parameters.year;
         var month = req.body.queryResult.parameters.month;
         var babyno;
@@ -871,7 +910,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
         console.log('*******************************');
         console.log(res);
         console.log('*******************************');
-        console.log(req.body.queryResult);
+        console.log(req.body.queryResult.fulfillmentText);
         agent.add("安安");
     }
 
@@ -911,7 +950,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('search all growing record', searchAllGrowingRecord);
     intentMap.set('search all growing record - custom', searchAllGrowingRecord2);
     intentMap.set('search growing record by name and year and month', searchGrowingRecordByYearMonth);
-    intentMap.set('search growing record by name and year and month - custom', searchGrowingRecordByYearMonth2);
+    intentMap.set('search growing record by name and year and month - custom', searchGrowingRecordByYearMonthInBaby);
+    intentMap.set('search growing record by name and year and month - custom - custom', searchGrowingRecordByYearMonthInYearMonth);
 
     intentMap.set('Test', Test);
     intentMap.set('Test - custom', Test2);
