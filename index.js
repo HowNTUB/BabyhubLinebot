@@ -179,6 +179,16 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         } else {
                             emoji = "🤡";
                         }
+
+                        const lineMessage = {
+                            "type": "image",
+                            "originalContentUrl": "https://i.imgur.com/GvTlnnj.png",
+                            "previewImageUrl": "https://i.imgur.com/GvTlnnj.png"
+                        };
+                        var payload = new Payload('LINE', lineMessage, {
+                            sendAsMessage: true
+                        });
+                        agent.add(payload);
                         agent.add("你是" + data.username + "，是個" + emoji + data.appellation + "。");
                         agent.add("📧電子信箱是" + data.id);
                     } else {
@@ -508,7 +518,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         "actions": [{
                             "type": "datetimepicker",
                             "label": "請選擇日期",
-                            "data": "訂房日期",
+                            "text": "訂房日期",
                             "mode": "date",
                             "initial": "2019-11-20",
                             "max": "2020-12-31",
