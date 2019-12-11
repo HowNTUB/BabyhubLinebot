@@ -782,11 +782,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else if (data == 0) {
                         agent.add('❌找不到資料');
                     } else {
-                        var msg = '';
+                        agent.add('📖' + year + '年' + month + '月的成長紀錄\n');
                         data.forEach(item => {
-                            msg += '\n\n\nday' + moment(item.recorddate).format("D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc';
+                            agent.add(moment(item.recorddate).format("M-D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc');
                         });
-                        agent.add('📖' + year + '年' + month + '月的成長紀錄\n' + msg);
                     }
                 })
             }
