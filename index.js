@@ -900,36 +900,28 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "type": "template",
-            "altText": "選擇📆月份",
-            "template": {
-                "type": "carousel",
-                "columns": [{
-                    "title": "選擇📆月份",
-                    "text": "選擇要查詢的月份。",
-                    "actions": [
-                        {
-                            "type": "message",
-                            "label": "這個月",
-                            "text": today.getFullYear() + '/' + (today.getMonth() + 1)
-                        }, {
-                            "type": "message",
-                            "label": "上個月",
-                            "text": today.getFullYear() + '/' + today.getMonth()
-                        }, {
-                            "type": "uri",
-                            "label": "View details",
-                            "uri": "https://google.com",
-                            "altUri": {
-                                "desktop": "https://google.com"
-                            }
-                        }
-                    ]
-                }],
-                "imageAspectRatio": "rectangle",
-                "imageSize": "cover"
-            }
-        };
+            "size": {
+              "width": 2500,
+              "height": 1686
+            },
+            "selected": false,
+            "name": "Nice richmenu",
+            "chatBarText": "Tap to open",
+            "areas": [
+              {
+                "bounds": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 2500,
+                  "height": 1686
+                },
+                "action": {
+                  "type": "postback",
+                  "data": "action=buy&itemid=123"
+                }
+              }
+            ]
+          };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
