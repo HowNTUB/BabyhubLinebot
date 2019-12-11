@@ -226,8 +226,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 var payload = new Payload('LINE', lineMessage, {
                                     sendAsMessage: true
                                 });
-                                agent.add(payload);
                                 data.forEach(item => {
+                                    agent.add(payload);
                                     var emoji;
                                     if (item.gender == "男孩") {
                                         emoji = "👦🏻";
