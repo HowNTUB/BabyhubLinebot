@@ -988,9 +988,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         "action": {  
                             "type":"uri",
                             "label":"View details",
-                            "uri":"http://example.com/page/222",
+                            "uri":"https://www.google.com.tw/",
                             "altUri": {
-                               "desktop" : "http://example.com/pc/page/222"
+                               "desktop":"https://www.google.com.tw/"
                             }
                          }
                     }
