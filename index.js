@@ -968,12 +968,19 @@ app.post('/dialogflow', express.json(), (req, res) => {
             "quickReply": { // ②
                 "items": [
                     {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "camera",
+                            "label": "Camera"
+                        }
+                    },
+                    {
                         "type": "action",
                         "imageUrl": "https://example.com/tempura.png",
                         "action": {
-                            "type": "message",
-                            "label": "Tempura",
-                            "text": "Tempura"
+                            "type": "cameraRoll",
+                            "label": "Camera roll"
                         }
                     },
                     {
