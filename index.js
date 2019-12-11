@@ -526,8 +526,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "text": today.getFullYear() + '/' + today.getMonth()
                                 }, {
                                     "type": "message",
-                                    "label": "或直接輸入 年/月",
-                                    "text": ""
+                                    "label": "或直接輸入年/月",
+                                    "text": " "
                                 }]
                         }],
                         "imageAspectRatio": "rectangle",
