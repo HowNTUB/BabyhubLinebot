@@ -524,8 +524,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "type": "message",
                                     "label": "上個月",
                                     "text": today.getFullYear() + '/' + today.getMonth()
-                                },
-                                {
+                                }, {
+                                    "type": "camera",
+                                    "label": "Camera"
+                                }, {
                                     "type": "message",
                                     "label": "直接輸入年/月",
                                     "text": " "
