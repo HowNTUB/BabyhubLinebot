@@ -526,7 +526,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "text": today.getFullYear() + '/' + today.getMonth()
                                 }, {
                                     "type": "message",
-                                    "label": "也可以直接輸入 年/月",
+                                    "label": "或直接輸入 年/月",
                                     "text": ""
                                 }]
                         }],
