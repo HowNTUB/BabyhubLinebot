@@ -218,16 +218,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 agent.add(errorMsg);
                             } else {
                                 agent.add("👶🏻寶寶資訊");
-                                const lineMessage = {
-                                    "type": "image",
-                                    "originalContentUrl": "https://i.imgur.com/GvTlnnj.png",
-                                    "previewImageUrl": "https://i.imgur.com/GvTlnnj.png"
-                                };
-                                var payload = new Payload('LINE', lineMessage, {
-                                    sendAsMessage: true
-                                });
                                 data.forEach(item => {
-                                    agent.add(payload);
                                     var emoji;
                                     if (item.gender == "男孩") {
                                         emoji = "👦🏻";
@@ -239,6 +230,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     } else {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n身高' + item.height + '公分,體重' + item.weight + '公斤');
                                     }
+                                    const lineMessage = {
+                                        "type": "image",
+                                        "originalContentUrl": "https://i.imgur.com/GvTlnnj.png",
+                                        "previewImageUrl": "https://i.imgur.com/GvTlnnj.png"
+                                    };
+                                    var payload = new Payload('LINE', lineMessage, {
+                                        sendAsMessage: true
+                                    });
+                                    agent.add(payload);
                                 });
                             }
                         })
