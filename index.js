@@ -916,14 +916,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "type": "message",
                             "label": "上個月",
                             "text": today.getFullYear() + '/' + today.getMonth()
-                        }, {  
-                            "type":"uri",
-                            "label":"View details",
-                            "uri":"http://example.com/page/222",
+                        }, {
+                            "type": "uri",
+                            "label": "View details",
+                            "uri": "https://google.com",
                             "altUri": {
-                               "desktop" : "http://example.com/pc/page/222"
+                                "desktop": "https://google.com"
                             }
-                         }]
+                        }
+                    ]
                 }],
                 "imageAspectRatio": "rectangle",
                 "imageSize": "cover"
