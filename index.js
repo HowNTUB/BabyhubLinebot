@@ -900,27 +900,37 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "size": {
-              "width": 2500,
-              "height": 1686
-            },
-            "selected": false,
-            "name": "Nice richmenu",
-            "chatBarText": "Tap to open",
-            "areas": [
-              {
-                "bounds": {
-                  "x": 0,
-                  "y": 0,
-                  "width": 2500,
-                  "height": 1686
+            "type": "text", // ①
+            "text": "Select your favorite food category or send me your location!",
+            "quickReply": { // ②
+              "items": [
+                {
+                  "type": "action", // ③
+                  "imageUrl": "https://example.com/sushi.png",
+                  "action": {
+                    "type": "message",
+                    "label": "Sushi",
+                    "text": "Sushi"
+                  }
                 },
-                "action": {
-                  "type": "postback",
-                  "data": "action=buy&itemid=123"
+                {
+                  "type": "action",
+                  "imageUrl": "https://example.com/tempura.png",
+                  "action": {
+                    "type": "message",
+                    "label": "Tempura",
+                    "text": "Tempura"
+                  }
+                },
+                {
+                  "type": "action", // ④
+                  "action": {
+                    "type": "location",
+                    "label": "Send location"
+                  }
                 }
-              }
-            ]
+              ]
+            }
           };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
