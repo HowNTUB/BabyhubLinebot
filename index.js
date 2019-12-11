@@ -507,7 +507,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 //agent.add('請照格式輸入年月📆，像是');
                 //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
-                var thisMonth=today.getFullYear() + '/' + (today.getMonth() + 1);
+                var thisMonth = today.getFullYear() + '/' + (today.getMonth() + 1);
                 var thisMonthObject = {
                     "type": "message",
                     "label": "這個月",
@@ -516,7 +516,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 var lastMonthObject = {
                     "type": "message",
                     "label": "這個月",
-                    "text": (thisMonth-1)
+                    "text": (thisMonth - 1)
                 };
                 console.log(thisMonth);
                 const lineMessage = {
@@ -530,18 +530,18 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "actions": [
                                 {
                                     "type": "message",
-                                    "label": "直接輸入年/月",
-                                    "text": " "
-                                },{
+                                    "label": "這個月",
+                                    "text": "2019/12"
+                                }, {
                                     "type": "message",
                                     "label": "直接輸入年/月",
                                     "text": " "
                                 },
-                            {
-                                "type": "message",
-                                "label": "直接輸入年/月",
-                                "text": " "
-                            }]
+                                {
+                                    "type": "message",
+                                    "label": "直接輸入年/月",
+                                    "text": " "
+                                }]
                         }],
                         "imageAspectRatio": "rectangle",
                         "imageSize": "cover"
