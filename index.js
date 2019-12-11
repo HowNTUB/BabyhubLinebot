@@ -809,7 +809,39 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 }, {
                                     "type": "message",
                                     "label": "或直接輸入 年/月",
-                                    "text": " "
+                                    "text": " ",
+                                    "quickReply": { // ②
+                                        "items": [
+                                            {
+                                                "type": "action", // ③
+                                                "imageUrl": "https://example.com/sushi.png",
+                                                "action": {
+                                                    "type": "uri",
+                                                    "label": "View details",
+                                                    "uri": "https://www.google.com.tw/",
+                                                    "altUri": {
+                                                        "desktop": "https://www.google.com.tw/"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "type": "action",
+                                                "imageUrl": "https://example.com/tempura.png",
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "Tempura",
+                                                    "text": "Tempura"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ④
+                                                "action": {
+                                                    "type": "location",
+                                                    "label": "Send location"
+                                                }
+                                            }
+                                        ]
+                                    }
                                 }]
                         }],
                         "imageAspectRatio": "rectangle",
@@ -935,18 +967,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
             "text": "Select your favorite food category or send me your location!",
             "quickReply": { // ②
                 "items": [
-                    {
-                        "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
-                        "action": {
-                            "type": "uri",
-                            "label": "View details",
-                            "uri": "https://google.com",
-                            "altUri": {
-                                "desktop": "https://google.com"
-                            }
-                        }
-                    },
                     {
                         "type": "action",
                         "imageUrl": "https://example.com/tempura.png",
