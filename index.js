@@ -931,43 +931,35 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "type": "bubble",
-            "header": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
+            "type": "text", // ①
+            "text": "Select your favorite food category or send me your location!",
+            "quickReply": { // ②
+              "items": [
+                {  
+                    "type":"uri",
+                    "label":"View details",
+                    "uri":"https://google.com",
+                    "altUri": {
+                       "desktop" : "https://google.com"
+                    }
+                 },
                 {
-                  "type": "text",
-                  "text": "Header text"
+                  "type": "action",
+                  "imageUrl": "https://example.com/tempura.png",
+                  "action": {
+                    "type": "message",
+                    "label": "Tempura",
+                    "text": "Tempura"
+                  }
+                },
+                {
+                  "type": "action", // ④
+                  "action": {
+                    "type": "location",
+                    "label": "Send location"
+                  }
                 }
               ]
-            },
-            "hero": {
-              "type": "image",
-              "url": "https://example.com/flex/images/image.jpg"
-            },
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Body text"
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Footer text"
-                }
-              ]
-            },
-            "styles": {
-              "comment": "See the example of a bubble style object"
             }
           };
         var payload = new Payload('LINE', lineMessage, {
