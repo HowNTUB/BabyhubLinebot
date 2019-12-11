@@ -900,8 +900,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "type": "text", // ①
-            "text": "Select your favorite food category or send me your location!",
             "quickReply": { // ②
                 "items": [
                     {
@@ -951,7 +949,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "label": "6",
                             "text": "6"
                         }
-                    },{
+                    }, {
                         "type": "action", // ③
                         "action": {
                             "type": "message",
