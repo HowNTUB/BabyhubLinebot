@@ -525,7 +525,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "label": "上個月",
                                     "text": today.getFullYear() + '/' + today.getMonth()
                                 }, {
-                                    "type": "text",
+                                    "type": "message",
                                     "label": "直接輸入年/月",
                                     "text": " ",
                                     "quickReply": { // ②
@@ -552,77 +552,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                                     "type": "message",
                                                     "label": "3",
                                                     "text": "3"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "4",
-                                                    "text": "4"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "5",
-                                                    "text": "5"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "6",
-                                                    "text": "6"
-                                                }
-                                            }, {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "1",
-                                                    "text": "1"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "2",
-                                                    "text": "2"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "3",
-                                                    "text": "3"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "4",
-                                                    "text": "4"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "5",
-                                                    "text": "5"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "6",
-                                                    "text": "6"
                                                 }
                                             }
                                         ]
@@ -999,107 +928,87 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "type": "text", // ①
-            "text": "Select your favorite food category or send me your location!",
-            "quickReply": { // ②
-                "items": [
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "1",
-                            "text": "1"
-                        }
+            "size": {
+                "width": 2500,
+                "height": 1686
+            },
+            "selected": false,
+            "name": "Controller",
+            "chatBarText": "Controller",
+            "areas": [
+                {
+                    "bounds": {
+                        "x": 551,
+                        "y": 325,
+                        "width": 321,
+                        "height": 321
                     },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "2",
-                            "text": "2"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "3",
-                            "text": "3"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "4",
-                            "text": "4"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "5",
-                            "text": "5"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "6",
-                            "text": "6"
-                        }
-                    }, {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "1",
-                            "text": "1"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "2",
-                            "text": "2"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "3",
-                            "text": "3"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "4",
-                            "text": "4"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "5",
-                            "text": "5"
-                        }
-                    },
-                    {
-                        "type": "action", // ③
-                        "action": {
-                            "type": "message",
-                            "label": "6",
-                            "text": "6"
-                        }
+                    "action": {
+                        "type": "message",
+                        "text": "up"
                     }
-                ]
-            }
+                },
+                {
+                    "bounds": {
+                        "x": 876,
+                        "y": 651,
+                        "width": 321,
+                        "height": 321
+                    },
+                    "action": {
+                        "type": "message",
+                        "text": "right"
+                    }
+                },
+                {
+                    "bounds": {
+                        "x": 551,
+                        "y": 972,
+                        "width": 321,
+                        "height": 321
+                    },
+                    "action": {
+                        "type": "message",
+                        "text": "down"
+                    }
+                },
+                {
+                    "bounds": {
+                        "x": 225,
+                        "y": 651,
+                        "width": 321,
+                        "height": 321
+                    },
+                    "action": {
+                        "type": "message",
+                        "text": "left"
+                    }
+                },
+                {
+                    "bounds": {
+                        "x": 1433,
+                        "y": 657,
+                        "width": 367,
+                        "height": 367
+                    },
+                    "action": {
+                        "type": "message",
+                        "text": "btn b"
+                    }
+                },
+                {
+                    "bounds": {
+                        "x": 1907,
+                        "y": 657,
+                        "width": 367,
+                        "height": 367
+                    },
+                    "action": {
+                        "type": "message",
+                        "text": "btn a"
+                    }
+                }
+            ]
         };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
