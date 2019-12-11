@@ -234,8 +234,12 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     var payload = new Payload('LINE', lineMessage, {
                                         sendAsMessage: true
                                     });
-                                    */
                                     agent.add(payload);
+                                    */
+                                    agent.add("1");
+                                    agent.add("2");
+                                    agent.add("3");
+                                    agent.add("4");
                                     if (item.height == null) {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
                                     } else {
@@ -767,7 +771,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add(errorMsg);
             } else if (data == 0) {
                 agent.add('❌沒有找到你的寶寶👶🏻，請確認有沒有正確的輸入寶寶名字👶🏻。');
-            } else {                
+            } else {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
             }
