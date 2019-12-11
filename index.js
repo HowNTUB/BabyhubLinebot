@@ -239,6 +239,37 @@ app.post('/dialogflow', express.json(), (req, res) => {
         })
     }
 
+    function logo(agent){        
+        const lineMessage = {
+            "type": "text", // ①
+            "text": "Select your favorite food category or send me your location!",
+            "quickReply": { // ②
+                "items": [
+                    {
+                      "type": "action", // ③
+                      "imageUrl": "https://example.com/sushi.png",
+                      "action": {
+                        "type": "message",
+                        "label": "Babyhub網頁版超鏈結🔗",
+                        "text": "http://140.131.115.90"
+                      }
+                    },
+                    {
+                        "type": "action",
+                        "imageUrl": "https://example.com/tempura.png",
+                        "action": {
+                            "type": "Babyhub Line聊天機器人功能介紹",
+                            "label": "關於下方的📋圖文功能選單：\n-\n✏️ 鉛筆圖示為日記相關功能\n-\n🎛️ 體重計圖示為成長紀錄相關功能\n-\n‍♂️ 人像圖示為帳號資訊相關功能\n-\n🟢 登入登出功能\n-\n🐻 Logo圖示為Babyhub的相關資訊"
+                        }
+                    }
+                ]
+            }
+        };
+        var payload = new Payload('LINE', lineMessage, {
+            sendAsMessage: true
+        });
+        agent.add(payload);
+    }
     //------------------------------------   
 
     function loginAndLogout(agent) {
@@ -318,107 +349,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 agent.add('註冊成功👍');
             }
         })
-    }
-    //------------------------------------   
-    function NasalCongestion() {
-        var number = req.body.queryResult.parameters.number;
-        switch (number) {
-            case 1:
-                agent.add("你選擇使用嬰兒油、食鹽水用棉花棒清理");
-                agent.add("建議讓寶寶躺著，固定頭部，利用棉花棒沾嬰兒油、食鹽水擦拭清理鼻腔，若有黏稠鼻涕，用旋轉的方式擦拭。");
-                break;
-            case 2:
-                agent.add("你選擇溫毛巾敷鼻子");
-                agent.add("用溼熱的毛巾在鼻子上施行熱敷，鼻黏膜遇熱擴張後，鼻腔會比較通暢，同時黏稠的鼻涕，也會被蒸氣軟化而流出來，每次敷約3～5分鐘，小心毛巾熱度過高燙傷哦。");
-                break;
-            case 3:
-                agent.add("你選擇運用水蒸氣");
-                agent.add("可利用浴室放熱水瀰漫的蒸氣，或是使用美容用的蒸臉器噴出來的蒸氣，吸3～5分鐘，再清除鼻涕。");
-                break;
-            case 4:
-                agent.add("你選擇吸鼻球");
-                agent.add("材質是橡膠，不會傷到嬰兒稚嫩的肌膚，可伸進寶寶的狹小鼻腔，將堵在鼻孔的鼻屎、鼻涕吸出來，緩解呼吸不順的症狀，但適用於新生兒，太嚴重的鼻塞較無效果。");
-                break;
-            case 5:
-                agent.add("你選擇抗生素治療");
-                agent.add("若是嚴重的鼻竇炎，必須10～14天完整的抗生素治療，並加上積極的膿液抽吸才能有良好的效果。。");
-                break;
-            default:
-                agent.add("請輸入1~5，如果以上方法都沒用請帶著你的寶寶去看醫生。(輸入[附近醫院]查詢附近有哪些醫院診所。)");
-        }
-    }
-    function doWhat() {
-        var month = req.body.queryResult.parameters.month;
-        agent.add("寶寶" + month + "個月")
-        switch (month) {
-            case 1:
-                agent.add("寶寶應該會舞動雙手、會注意別人的臉。");
-                break;
-            case 2:
-                agent.add("寶寶會有抓握的反射動作、逗弄時會笑。");
-                break;
-            case 3:
-                agent.add("兩臂有對稱性的動作、雙手會碰在一起、會笑出聲音、會發出兩種不同的母音。");
-                break;
-            case 4:
-                agent.add("手掌會有目的地的打開、會高興的尖叫。");
-                break;
-            case 5:
-                agent.add("會將頭轉向聲源、會自動的對人微笑。");
-                break;
-            case 6:
-                agent.add("會用手指及手掌捉握東西、眼睛會注射聲源。");
-                break;
-            case 7:
-                agent.add("會將物品由一手轉交至另一手、會接連發出兩個母音。");
-                break;
-            case 8:
-                agent.add("會拍擊物品、能聽懂熟悉的話、會拿住餅乾吃。");
-                break;
-            case 9:
-                agent.add("會嘗試抓取較遠的玩具。");
-                break;
-            case 10:
-                agent.add("會兩手交互取物、會搖鈴、會自己握住奶瓶喝水、對陌生人有反應（如：高興、害羞）。");
-                break;
-            case 11:
-                agent.add("會用雙手各拿一塊積木互相敲打。");
-                break;
-            case 12:
-                agent.add("會將積木放入盒中、會模仿說單字、大人幫忙穿衣時能配合動作。");
-                break;
-            default:
-                agent.add("請輸入1~12個月唷～");
-        }
-
-
-    }
-    function normalWeightNoYear() {
-        var month = req.body.queryResult.parameters.month;
-        var normalWeigth = 0;
-        normalWeigth = 3 + month * 0.6;
-        if (month < 1 || month > 12) { agent.add('我們僅提供1~12個月的正常體重唷') }
-        else {
-            if (month > 1 && month < 6) { normalWeigth = 3 + month * 0.6; }
-            else if (month > 7 && month < 12) { normalWeigth = 3 + month * 0.5 }
-            agent.add(month.toString() + '個月，大約' + normalWeigth.toString() + '公斤為正常體重');
-        }
-    }
-
-    function normalWeightHaveYear() {
-        var age = req.body.queryResult.parameters.age;
-        var normalWeigth = 0;
-        if (age < 1 || age > 12) { agent.add('我們僅提供1~12歲的正常體重唷') }
-        else {
-            normalWeigth = age * 2 + 7;
-            agent.add(age.toString() + '歲，大約' + normalWeigth.toString() + '公斤為正常體重');
-        }
-    }
-    function checkBabyGrowsNormally() {
-        var month = req.body.queryResult.parameters.month;
-        var height = req.body.queryResult.parameters.height;
-        var weight = req.body.queryResult.parameters.weight;
-        agent.add('年齡是' + month.toString() + '個月(month),' + '身高是' + height.toString() + '公分(cm)' + '體重是' + weight.toString() + '公斤(kg)');
     }
 
     //------------------------------------   
@@ -960,8 +890,124 @@ app.post('/dialogflow', express.json(), (req, res) => {
         })
     }
     //------------------------------------   
+    function NasalCongestion() {
+        var number = req.body.queryResult.parameters.number;
+        switch (number) {
+            case 1:
+                agent.add("你選擇使用嬰兒油、食鹽水用棉花棒清理");
+                agent.add("建議讓寶寶躺著，固定頭部，利用棉花棒沾嬰兒油、食鹽水擦拭清理鼻腔，若有黏稠鼻涕，用旋轉的方式擦拭。");
+                break;
+            case 2:
+                agent.add("你選擇溫毛巾敷鼻子");
+                agent.add("用溼熱的毛巾在鼻子上施行熱敷，鼻黏膜遇熱擴張後，鼻腔會比較通暢，同時黏稠的鼻涕，也會被蒸氣軟化而流出來，每次敷約3～5分鐘，小心毛巾熱度過高燙傷哦。");
+                break;
+            case 3:
+                agent.add("你選擇運用水蒸氣");
+                agent.add("可利用浴室放熱水瀰漫的蒸氣，或是使用美容用的蒸臉器噴出來的蒸氣，吸3～5分鐘，再清除鼻涕。");
+                break;
+            case 4:
+                agent.add("你選擇吸鼻球");
+                agent.add("材質是橡膠，不會傷到嬰兒稚嫩的肌膚，可伸進寶寶的狹小鼻腔，將堵在鼻孔的鼻屎、鼻涕吸出來，緩解呼吸不順的症狀，但適用於新生兒，太嚴重的鼻塞較無效果。");
+                break;
+            case 5:
+                agent.add("你選擇抗生素治療");
+                agent.add("若是嚴重的鼻竇炎，必須10～14天完整的抗生素治療，並加上積極的膿液抽吸才能有良好的效果。。");
+                break;
+            default:
+                agent.add("請輸入1~5，如果以上方法都沒用請帶著你的寶寶去看醫生。(輸入[附近醫院]查詢附近有哪些醫院診所。)");
+        }
+    }
+    function doWhat() {
+        var month = req.body.queryResult.parameters.month;
+        agent.add("寶寶" + month + "個月")
+        switch (month) {
+            case 1:
+                agent.add("寶寶應該會舞動雙手、會注意別人的臉。");
+                break;
+            case 2:
+                agent.add("寶寶會有抓握的反射動作、逗弄時會笑。");
+                break;
+            case 3:
+                agent.add("兩臂有對稱性的動作、雙手會碰在一起、會笑出聲音、會發出兩種不同的母音。");
+                break;
+            case 4:
+                agent.add("手掌會有目的地的打開、會高興的尖叫。");
+                break;
+            case 5:
+                agent.add("會將頭轉向聲源、會自動的對人微笑。");
+                break;
+            case 6:
+                agent.add("會用手指及手掌捉握東西、眼睛會注射聲源。");
+                break;
+            case 7:
+                agent.add("會將物品由一手轉交至另一手、會接連發出兩個母音。");
+                break;
+            case 8:
+                agent.add("會拍擊物品、能聽懂熟悉的話、會拿住餅乾吃。");
+                break;
+            case 9:
+                agent.add("會嘗試抓取較遠的玩具。");
+                break;
+            case 10:
+                agent.add("會兩手交互取物、會搖鈴、會自己握住奶瓶喝水、對陌生人有反應（如：高興、害羞）。");
+                break;
+            case 11:
+                agent.add("會用雙手各拿一塊積木互相敲打。");
+                break;
+            case 12:
+                agent.add("會將積木放入盒中、會模仿說單字、大人幫忙穿衣時能配合動作。");
+                break;
+            default:
+                agent.add("請輸入1~12個月唷～");
+        }
+
+
+    }
+    function normalWeightNoYear() {
+        var month = req.body.queryResult.parameters.month;
+        var normalWeigth = 0;
+        normalWeigth = 3 + month * 0.6;
+        if (month < 1 || month > 12) { agent.add('我們僅提供1~12個月的正常體重唷') }
+        else {
+            if (month > 1 && month < 6) { normalWeigth = 3 + month * 0.6; }
+            else if (month > 7 && month < 12) { normalWeigth = 3 + month * 0.5 }
+            agent.add(month.toString() + '個月，大約' + normalWeigth.toString() + '公斤為正常體重');
+        }
+    }
+
+    function normalWeightHaveYear() {
+        var age = req.body.queryResult.parameters.age;
+        var normalWeigth = 0;
+        if (age < 1 || age > 12) { agent.add('我們僅提供1~12歲的正常體重唷') }
+        else {
+            normalWeigth = age * 2 + 7;
+            agent.add(age.toString() + '歲，大約' + normalWeigth.toString() + '公斤為正常體重');
+        }
+    }
+    function checkBabyGrowsNormally() {
+        var month = req.body.queryResult.parameters.month;
+        var height = req.body.queryResult.parameters.height;
+        var weight = req.body.queryResult.parameters.weight;
+        agent.add('年齡是' + month.toString() + '個月(month),' + '身高是' + height.toString() + '公分(cm)' + '體重是' + weight.toString() + '公斤(kg)');
+    }
+    //------------------------------------   
 
     function Test(agent) {
+        const body = JSON.stringify(request.body);
+        const queryText = request.body.queryResult.queryText;
+        const action = request.body.queryResult.action;
+        const userId = request.body.originalDetectIntentRequest.payload.data.source.userId;
+        const timestamp = request.body.originalDetectIntentRequest.payload.data.timestamp;
+        const parameters = request.body.queryResult.parameters;                
+        const recommendation = parameters.recommendation;
+        
+        //回應參數   
+        agent.add('請求封包內文:' + body);      
+        agent.add('傳入訊息:' + queryText);
+        agent.add('動作:' + action);
+        agent.add('使用者ID:' + userId);
+        agent.add('時間戳記:' + timestamp);      
+        agent.add('參數:' + recommendation);
         const lineMessage = {
             "type": "text", // ①
             "text": "Select your favorite food category or send me your location!",
@@ -1018,6 +1064,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
     intentMap.set('Default Welcome Intent', welcome);
     intentMap.set('who am i', whoAmI);
     intentMap.set('my baby', myBaby);
+    intentMap.set('logo', logo);
 
     //綁定與解除綁定
     intentMap.set('login / logout', loginAndLogout);
