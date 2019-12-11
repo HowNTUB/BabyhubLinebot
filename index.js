@@ -520,12 +520,12 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "actions": [{
                                 "type": "message",
                                 "label": "這個月",
-                                "text": thisMonth
+                                "text": "這個月"
                             },
                             {
                                 "type": "message",
                                 "label": "上個月",
-                                "text": thisMonth-1
+                                "text": "上個月"
                             },
                             {
                                 "type": "message",
