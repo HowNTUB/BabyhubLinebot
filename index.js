@@ -527,7 +527,106 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 }, {
                                     "type": "message",
                                     "label": "直接輸入年/月",
-                                    "text": " "
+                                    "text": " ",
+                                    "quickReply": { // ②
+                                        "items": [
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "1",
+                                                    "text": "1"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "2",
+                                                    "text": "2"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "3",
+                                                    "text": "3"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "4",
+                                                    "text": "4"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "5",
+                                                    "text": "5"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "6",
+                                                    "text": "6"
+                                                }
+                                            }, {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "1",
+                                                    "text": "1"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "2",
+                                                    "text": "2"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "3",
+                                                    "text": "3"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "4",
+                                                    "text": "4"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "5",
+                                                    "text": "5"
+                                                }
+                                            },
+                                            {
+                                                "type": "action", // ③
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "6",
+                                                    "text": "6"
+                                                }
+                                            }
+                                        ]
+                                    }
                                 }]
                         }],
                         "imageAspectRatio": "rectangle",
@@ -900,6 +999,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
+            "type": "text", // ①
+            "text": "Select your favorite food category or send me your location!",
             "quickReply": { // ②
                 "items": [
                     {
