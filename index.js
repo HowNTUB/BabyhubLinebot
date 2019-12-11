@@ -509,26 +509,26 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
                 const lineMessage = {
                     "type": "template",
-                    "altText": "這是一個Carousel文字選單樣板",
+                    "altText": "選擇📆月份",
                     "template": {
                         "type": "carousel",
                         "columns": [{
-                            "title": "麵類",
-                            "text": "請選擇麵類餐點",
+                            "title": "選擇📆月份",
+                            "text": "選擇要查詢的月份，或是手動輸入年/月。",
                             "actions": [{
                                 "type": "message",
-                                "label": "想吃牛肉麵",
-                                "text": "牛肉麵"
+                                "label": "這個月",
+                                "text": today.getFullYear() + '/' + (today.getMonth() + 1)
                             },
                             {
                                 "type": "message",
-                                "label": "想吃大魯麵",
-                                "text": "大魯麵"
+                                "label": "上個月",
+                                "text": today.getFullYear() + '/' + (today.getMonth())
                             },
                             {
                                 "type": "message",
-                                "label": "想吃蕃茄麵",
-                                "text": "蕃茄麵"
+                                "label": "直接輸入年/月",
+                                "text": ""
                             }]
                         }],
                         "imageAspectRatio": "rectangle",
