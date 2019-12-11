@@ -935,14 +935,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
             "text": "Select your favorite food category or send me your location!",
             "quickReply": { // ②
               "items": [
-                {  
-                    "type":"uri",
-                    "label":"View details",
-                    "uri":"https://google.com",
-                    "altUri": {
-                       "desktop" : "https://google.com"
-                    }
-                 },
                 {
                   "type": "action",
                   "imageUrl": "https://example.com/tempura.png",
