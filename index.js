@@ -507,6 +507,57 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else {
                 agent.add('請照格式輸入年月📆，像是');
                 agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
+                const lineMessage = {
+                    "type": "template",
+                    "altText": "這是一個Carousel文字選單樣板",
+                    "template": {
+                        "type": "carousel",
+                        "columns": [{
+                            "title": "麵類",
+                            "text": "請選擇麵類餐點",
+                            "actions": [{
+                                "type": "message",
+                                "label": "想吃牛肉麵",
+                                "text": "牛肉麵"
+                            },
+                            {
+                                "type": "message",
+                                "label": "想吃大魯麵",
+                                "text": "大魯麵"
+                            },
+                            {
+                                "type": "message",
+                                "label": "想吃蕃茄麵",
+                                "text": "蕃茄麵"
+                            }]
+                        },
+                        {
+                            "title": "飯類",
+                            "text": "請選擇飯類餐點",
+                            "actions": [{
+                                "type": "message",
+                                "label": "想吃蛋炒飯",
+                                "text": "蛋炒飯"
+                            },
+                            {
+                                "type": "message",
+                                "label": "想吃燴飯",
+                                "text": "燴飯"
+                            },
+                            {
+                                "type": "message",
+                                "label": "想吃海鮮炒飯",
+                                "text": "海鮮炒飯"
+                            }]
+                        }],
+                        "imageAspectRatio": "rectangle",
+                        "imageSize": "cover"
+                    }
+                };
+                var payload = new Payload('LINE', lineMessage, {
+                    sendAsMessage: true
+                });
+
             }
         })
     }
@@ -783,7 +834,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         agent.add('📖' + year + '年' + month + '月的成長紀錄');
                         data.forEach(item => {
-                            agent.add('day '+moment(item.recorddate).format("D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc');
+                            agent.add('day ' + moment(item.recorddate).format("D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc');
                         });
                     }
                 })
