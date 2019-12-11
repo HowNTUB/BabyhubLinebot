@@ -525,9 +525,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "label": "上個月",
                                     "text": today.getFullYear() + '/' + today.getMonth()
                                 }, {
-                                    "type": "camera",
-                                    "label": "Camera"
-                                }, {
                                     "type": "message",
                                     "label": "直接輸入年/月",
                                     "text": " "
@@ -903,26 +900,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "type": "template",
-            "altText": "這是一個確認樣板",
-            "template": {
-                "type": "confirm",
-                "text": "是否確認要訂房?",
-                "actions": [{
-                    "type": "datetimepicker",
-                    "label": "請選擇日期",
-                    "data": "訂房日期",
-                    "mode": "date",
-                    "initial": "2019-11-20",
-                    "max": "2020-12-31",
-                    "min": "2018-11-20"
-                },
-                {
-                    "type": "message",
-                    "label": "放棄訂房",
-                    "text": "否"
-                }]
-            }
+              
+                "type":"camera",
+                "label":"Camera"
+             
         };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
