@@ -241,13 +241,13 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function logo(agent){        
         const lineMessage = {
-            "type": "text", // ①
-            "text": "Select your favorite food category or send me your location!",
-            "quickReply": { // ②
+            "type": "text",
+            "text": "選擇下方的按鈕",
+            "quickReply": {
                 "items": [
                     {
-                      "type": "action", // ③
-                      "imageUrl": "https://example.com/sushi.png",
+                      "type": "action",
+                      "imageUrl": "https://i.imgur.com/QeXnecC.png",
                       "action": {
                         "type": "message",
                         "label": "Babyhub網頁版超鏈結🔗",
@@ -256,7 +256,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action",
-                        "imageUrl": "https://example.com/tempura.png",
+                        "imageUrl": "https://i.imgur.com/R32koUg.png",
                         "action": {
                             "type": "Babyhub Line聊天機器人功能介紹",
                             "label": "關於下方的📋圖文功能選單：\n-\n✏️ 鉛筆圖示為日記相關功能\n-\n🎛️ 體重計圖示為成長紀錄相關功能\n-\n‍♂️ 人像圖示為帳號資訊相關功能\n-\n🟢 登入登出功能\n-\n🐻 Logo圖示為Babyhub的相關資訊"
