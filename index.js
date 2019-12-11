@@ -528,8 +528,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "title": "選擇📆月份",
                             "text": "選擇要查詢的月份。",
                             "actions": [
-                                thisMonthObject,
-                                lastMonthObject,
+                                {
+                                    "type": "message",
+                                    "label": "直接輸入年/月",
+                                    "text": " "
+                                },{
+                                    "type": "message",
+                                    "label": "直接輸入年/月",
+                                    "text": " "
+                                },
                             {
                                 "type": "message",
                                 "label": "直接輸入年/月",
