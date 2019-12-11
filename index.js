@@ -906,7 +906,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 "items": [
                     {
                         "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
                         "action": {
                             "type": "message",
                             "label": "1",
@@ -915,7 +914,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
                         "action": {
                             "type": "message",
                             "label": "2",
@@ -924,7 +922,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
                         "action": {
                             "type": "message",
                             "label": "3",
@@ -933,7 +930,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
                         "action": {
                             "type": "message",
                             "label": "4",
@@ -942,7 +938,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
                         "action": {
                             "type": "message",
                             "label": "5",
@@ -951,11 +946,57 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action", // ③
-                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "message",
+                            "label": "6",
+                            "text": "6"
+                        }
+                    },{
+                        "type": "action", // ③
                         "action": {
                             "type": "message",
                             "label": "1",
                             "text": "1"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "action": {
+                            "type": "message",
+                            "label": "2",
+                            "text": "2"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "action": {
+                            "type": "message",
+                            "label": "3",
+                            "text": "3"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "action": {
+                            "type": "message",
+                            "label": "4",
+                            "text": "4"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "action": {
+                            "type": "message",
+                            "label": "5",
+                            "text": "5"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "action": {
+                            "type": "message",
+                            "label": "6",
+                            "text": "6"
                         }
                     }
                 ]
