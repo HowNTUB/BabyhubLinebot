@@ -934,26 +934,38 @@ app.post('/dialogflow', express.json(), (req, res) => {
             "type": "text", // ①
             "text": "Select your favorite food category or send me your location!",
             "quickReply": { // ②
-              "items": [
-                {
-                  "type": "action",
-                  "imageUrl": "https://example.com/tempura.png",
-                  "action": {
-                    "type": "message",
-                    "label": "Tempura",
-                    "text": "Tempura"
-                  }
-                },
-                {
-                  "type": "action", // ④
-                  "action": {
-                    "type": "location",
-                    "label": "Send location"
-                  }
-                }
-              ]
+                "items": [
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "uri",
+                            "label": "View details",
+                            "uri": "https://google.com",
+                            "altUri": {
+                                "desktop": "https://google.com"
+                            }
+                        }
+                    },
+                    {
+                        "type": "action",
+                        "imageUrl": "https://example.com/tempura.png",
+                        "action": {
+                            "type": "message",
+                            "label": "Tempura",
+                            "text": "Tempura"
+                        }
+                    },
+                    {
+                        "type": "action", // ④
+                        "action": {
+                            "type": "location",
+                            "label": "Send location"
+                        }
+                    }
+                ]
             }
-          };
+        };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
