@@ -251,7 +251,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                       "action": {
                         "type": "message",
                         "label": "Babyhub網頁版超鏈結🔗",
-                        "text": "http://140.131.115.90"
+                        "text": "140.131.115.90"
                       }
                     },
                     {
