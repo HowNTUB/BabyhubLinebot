@@ -526,7 +526,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         "type": "carousel",
                         "columns": [{
                             "title": "選擇📆月份",
-                            "text": "選擇要查詢的月份，或是手動輸入年/月。",
+                            "text": "選擇要查詢的月份。",
                             "actions": [
                                 thisMonthObject,
                                 lastMonthObject,
