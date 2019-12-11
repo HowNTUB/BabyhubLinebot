@@ -900,11 +900,18 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {  
-            "type":"uri",
-            "label":"View details",
-            "uri":"http://example.com/page/222",
-            "altUri": {
-               "desktop" : "http://example.com/pc/page/222"
+            "type":"postback",
+            "replyToken":"b60d432864f44d079f6d8efe86cf404b",
+            "source":{  
+               "userId":"U91eeaf62d...",
+               "type":"user"
+            },
+            "timestamp":1513669370317,
+            "postback":{  
+               "data":"storeId=12345",
+               "params":{  
+                  "datetime":"2017-12-25T01:00"
+               }
             }
          };
         var payload = new Payload('LINE', lineMessage, {
