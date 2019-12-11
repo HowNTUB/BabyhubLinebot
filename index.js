@@ -899,12 +899,14 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------   
 
     function Test(agent) {
-        const lineMessage = {
-              
-                "type":"camera",
-                "label":"Camera"
-             
-        };
+        const lineMessage = {  
+            "type":"uri",
+            "label":"View details",
+            "uri":"http://example.com/page/222",
+            "altUri": {
+               "desktop" : "http://example.com/pc/page/222"
+            }
+         };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
