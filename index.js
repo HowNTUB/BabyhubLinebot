@@ -526,36 +526,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "text": today.getFullYear() + '/' + today.getMonth()
                                 }, {
                                     "type": "message",
-                                    "label": "直接輸入年/月",
-                                    "text": " ",
-                                    "quickReply": { // ②
-                                        "items": [
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "1",
-                                                    "text": "1"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "2",
-                                                    "text": "2"
-                                                }
-                                            },
-                                            {
-                                                "type": "action", // ③
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "3",
-                                                    "text": "3"
-                                                }
-                                            }
-                                        ]
-                                    }
+                                    "label": "也可以直接輸入 年/月",
+                                    "text": ""
                                 }]
                         }],
                         "imageAspectRatio": "rectangle",
@@ -587,7 +559,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         agent.add('📖' + year + '年' + month + '月的日記');
                         data.forEach(item => {
-                            agent.add('day ' + moment(item.diarydate).format("D") + '：\n' + item.diary);
+                            agent.add(moment(item.diarydate).format("MM/D") + '：\n' + item.diary);
                         });
                     }
                 })
@@ -815,8 +787,39 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else if (data == 0) {
                 agent.add('❌沒有找到你的寶寶👶🏻，請確認有沒有正確的輸入寶寶名字👶🏻。');
             } else {
-                agent.add('請照格式輸入年月📆，像是');
-                agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
+                //agent.add('請照格式輸入年月📆，像是');
+                //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
+                const lineMessage = {
+                    "type": "template",
+                    "altText": "選擇📆月份",
+                    "template": {
+                        "type": "carousel",
+                        "columns": [{
+                            "title": "選擇📆月份",
+                            "text": "選擇要查詢的月份。",
+                            "actions": [
+                                {
+                                    "type": "message",
+                                    "label": "這個月",
+                                    "text": today.getFullYear() + '/' + (today.getMonth() + 1)
+                                }, {
+                                    "type": "message",
+                                    "label": "上個月",
+                                    "text": today.getFullYear() + '/' + today.getMonth()
+                                }, {
+                                    "type": "message",
+                                    "label": "也可以直接輸入 年/月",
+                                    "text": ""
+                                }]
+                        }],
+                        "imageAspectRatio": "rectangle",
+                        "imageSize": "cover"
+                    }
+                };
+                var payload = new Payload('LINE', lineMessage, {
+                    sendAsMessage: true
+                });
+                agent.add(payload);
             }
         })
     }
@@ -842,7 +845,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     } else {
                         agent.add('📖' + year + '年' + month + '月的成長紀錄');
                         data.forEach(item => {
-                            agent.add('day ' + moment(item.recorddate).format("D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc');
+                            agent.add(moment(item.recorddate).format("MM/D") + '：' + '\n📏身長 ' + item.height + 'cm' + '\n🎛️體重 ' + item.weight + 'kg' + '\n🍼喝奶量 ' + item.drinkmilk + 'cc');
                         });
                     }
                 })
