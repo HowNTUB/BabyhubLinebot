@@ -523,7 +523,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "label": "上個月",
                                     "text": today.getFullYear() + '/' + today.getMonth()
                                 }, {
-                                    "type": "message",
+                                    "type": "text",
                                     "label": "直接輸入年/月",
                                     "text": "Select your favorite food category or send me your location!",
                                     "quickReply": { // ②
