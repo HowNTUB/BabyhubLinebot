@@ -513,43 +513,25 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     "template": {
                         "type": "carousel",
                         "columns": [{
-                            "title": "麵類",
-                            "text": "請選擇麵類餐點",
+                            "title": "選擇要查詢的月份",
+                            "text": "這個月、下個月、手動輸入",
                             "actions": [{
                                 "type": "message",
-                                "label": "想吃牛肉麵",
-                                "text": "牛肉麵"
+                                "label": "這個月",
+                                "text": today.getFullYear() + '/' + (today.getMonth() + 1)
                             },
                             {
                                 "type": "message",
-                                "label": "想吃大魯麵",
-                                "text": "大魯麵"
+                                "label": "上個月",
+                                "text": today.getFullYear() + '/' + (today.getMonth())
                             },
                             {
                                 "type": "message",
-                                "label": "想吃蕃茄麵",
-                                "text": "蕃茄麵"
+                                "label": "自己輸入(年/月)",
+                                "text": ""
                             }]
+                        }]
                         },
-                        {
-                            "title": "飯類",
-                            "text": "請選擇飯類餐點",
-                            "actions": [{
-                                "type": "message",
-                                "label": "想吃蛋炒飯",
-                                "text": "蛋炒飯"
-                            },
-                            {
-                                "type": "message",
-                                "label": "想吃燴飯",
-                                "text": "燴飯"
-                            },
-                            {
-                                "type": "message",
-                                "label": "想吃海鮮炒飯",
-                                "text": "海鮮炒飯"
-                            }]
-                        }],
                         "imageAspectRatio": "rectangle",
                         "imageSize": "cover"
                     }
