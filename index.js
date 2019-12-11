@@ -899,21 +899,33 @@ app.post('/dialogflow', express.json(), (req, res) => {
     //------------------------------------   
 
     function Test(agent) {
-        const lineMessage = {  
-            "type":"postback",
-            "replyToken":"b60d432864f44d079f6d8efe86cf404b",
-            "source":{  
-               "userId":"U91eeaf62d...",
-               "type":"user"
-            },
-            "timestamp":1513669370317,
-            "postback":{  
-               "data":"storeId=12345",
-               "params":{  
-                  "datetime":"2017-12-25T01:00"
-               }
+        const lineMessage = {
+            "type": "template",
+            "altText": "選擇📆月份",
+            "template": {
+                "type": "carousel",
+                "columns": [{
+                    "title": "選擇📆月份",
+                    "text": "選擇要查詢的月份。",
+                    "actions": [
+                        {
+                            "type": "message",
+                            "label": "這個月",
+                            "text": today.getFullYear() + '/' + (today.getMonth() + 1)
+                        }, {
+                            "type": "message",
+                            "label": "上個月",
+                            "text": today.getFullYear() + '/' + today.getMonth()
+                        }, {
+                            "type": "message",
+                            "label": "直接輸入年/月",
+                            "text": " "
+                        }]
+                }],
+                "imageAspectRatio": "rectangle",
+                "imageSize": "cover"
             }
-         };
+        };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
