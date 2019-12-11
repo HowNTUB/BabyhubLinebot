@@ -225,17 +225,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     } else if (item.gender == "女孩") {
                                         emoji = "👧🏻";
                                     }
-                                    /*
-                                    const lineMessage = {
-                                        "type": "image",
-                                        "originalContentUrl": "https://i.imgur.com/FqSRyzU.png",
-                                        "previewImageUrl": "https://i.imgur.com/FqSRyzU.png"
-                                    };
-                                    var payload = new Payload('LINE', lineMessage, {
-                                        sendAsMessage: true
-                                    });
                                     agent.add(payload);
-                                    */
                                     agent.add("1");
                                     agent.add("2");
                                     agent.add("3");
