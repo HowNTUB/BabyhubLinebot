@@ -900,56 +900,65 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function Test(agent) {
         const lineMessage = {
-            "type": "template",
-            "altText": "選擇📆月份",
-            "template": {
-                "type": "carousel",
-                "columns": [{
-                    "title": "選擇📆月份",
-                    "text": "選擇要查詢的月份。",
-                    "actions": [
-                        {
+            "type": "text", // ①
+            "text": "Select your favorite food category or send me your location!",
+            "quickReply": { // ②
+                "items": [
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
                             "type": "message",
-                            "label": "這個月",
-                            "text": today.getFullYear() + '/' + (today.getMonth() + 1)
-                        }, {
+                            "label": "1",
+                            "text": "1"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
                             "type": "message",
-                            "label": "上個月",
-                            "text": today.getFullYear() + '/' + today.getMonth()
-                        }, {
-                            "quickReply": { // ②
-                              "items": [
-                                {
-                                  "type": "action", // ③
-                                  "imageUrl": "https://example.com/sushi.png",
-                                  "action": {
-                                    "type": "message",
-                                    "label": "Sushi",
-                                    "text": "Sushi"
-                                  }
-                                },
-                                {
-                                  "type": "action",
-                                  "imageUrl": "https://example.com/tempura.png",
-                                  "action": {
-                                    "type": "message",
-                                    "label": "Tempura",
-                                    "text": "Tempura"
-                                  }
-                                },
-                                {
-                                  "type": "action", // ④
-                                  "action": {
-                                    "type": "location",
-                                    "label": "Send location"
-                                  }
-                                }
-                              ]
-                            }
-                          }]
-                }],
-                "imageAspectRatio": "rectangle",
-                "imageSize": "cover"
+                            "label": "2",
+                            "text": "2"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "message",
+                            "label": "3",
+                            "text": "3"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "message",
+                            "label": "4",
+                            "text": "4"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "message",
+                            "label": "5",
+                            "text": "5"
+                        }
+                    },
+                    {
+                        "type": "action", // ③
+                        "imageUrl": "https://example.com/sushi.png",
+                        "action": {
+                            "type": "message",
+                            "label": "1",
+                            "text": "1"
+                        }
+                    }
+                ]
             }
         };
         var payload = new Payload('LINE', lineMessage, {
