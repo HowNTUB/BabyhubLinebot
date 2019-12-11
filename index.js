@@ -985,10 +985,14 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     },
                     {
                         "type": "action", // ④
-                        "action": {
-                            "type": "location",
-                            "label": "Send location"
-                        }
+                        "action": {  
+                            "type":"uri",
+                            "label":"View details",
+                            "uri":"http://example.com/page/222",
+                            "altUri": {
+                               "desktop" : "http://example.com/pc/page/222"
+                            }
+                         }
                     }
                 ]
             }
