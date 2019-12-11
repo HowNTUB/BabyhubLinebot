@@ -225,6 +225,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     } else if (item.gender == "女孩") {
                                         emoji = "👧🏻";
                                     }
+                                    /*
                                     const lineMessage = {
                                         "type": "image",
                                         "originalContentUrl": "https://i.imgur.com/FqSRyzU.png",
@@ -233,6 +234,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     var payload = new Payload('LINE', lineMessage, {
                                         sendAsMessage: true
                                     });
+                                    */
                                     agent.add(payload);
                                     if (item.height == null) {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
