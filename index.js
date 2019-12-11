@@ -986,12 +986,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     {
                         "type": "action", // ④
                         "action": {  
-                            "type":"uri",
-                            "label":"View details",
-                            "uri":"https://www.google.com.tw/",
-                            "altUri": {
-                               "desktop":"https://www.google.com.tw/"
-                            }
+                            "type":"postback",
+                            "label":"Buy",
+                            "data":"action=buy&itemid=111",
+                            "text":"Buy"
                          }
                     }
                 ]
