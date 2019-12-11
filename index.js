@@ -505,6 +505,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else if (data == -1) {
                 agent.add(noLoginMsg);
             } else {
+                //agent.add('請照格式輸入年月📆，像是');
+                //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
                 const lineMessage = {
                     "type": "template",
                     "altText": "選擇📆月份",
@@ -522,38 +524,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     "type": "message",
                                     "label": "上個月",
                                     "text": today.getFullYear() + '/' + today.getMonth()
-                                }, {
-                                    "type": "text", // ①
-                                    "text": "Select your favorite food category or send me your location!",
-                                    "quickReply": { // ②
-                                        "items": [{
-                                            "type": "action", // ③
-                                            "imageUrl": "https://example.com/sushi.png",
-                                            "action": {
-                                                "type": "message",
-                                                "label": "Sushi",
-                                                "text": "Sushi"
-                                            }
-                                        },
-                                        {
-                                            "type": "action",
-                                            "imageUrl": "https://example.com/tempura.png",
-                                            "action": {
-                                                "type": "message",
-                                                "label": "Tempura",
-                                                "text": "Tempura"
-                                            }
-                                        },
-                                        {
-                                            "type": "action", // ④
-                                            "action": {
-                                                "type": "location",
-                                                "label": "Send location"
-                                            }
-                                        }
-                                        ]
-                                    }
-                                }, {
+                                },
+                                {
                                     "type": "message",
                                     "label": "直接輸入年/月",
                                     "text": " "
