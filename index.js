@@ -929,14 +929,27 @@ app.post('/dialogflow', express.json(), (req, res) => {
     function Test(agent) {
         const lineMessage = {
             "type": "bubble",
+            "header": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Header text"
+                }
+              ]
+            },
+            "hero": {
+              "type": "image",
+              "url": "https://example.com/flex/images/image.jpg"
+            },
             "body": {
               "type": "box",
               "layout": "vertical",
               "contents": [
                 {
-                  "type": "image",
-                  "url": "https://example.com/flex/images/image.jpg",
-                  "size": "full"
+                  "type": "text",
+                  "text": "Body text"
                 }
               ]
             },
@@ -945,22 +958,15 @@ app.post('/dialogflow', express.json(), (req, res) => {
               "layout": "vertical",
               "contents": [
                 {
-                  "type": "spacer",
-                  "size": "xl"
-                },
-                {
-                  "type": "button",
-                  "action": {
-                    "type": "uri",
-                    "label": "Tap me",
-                    "uri": "https://example.com"
-                  },
-                  "style": "primary",
-                  "color": "#0000ff"
+                  "type": "text",
+                  "text": "Footer text"
                 }
               ]
+            },
+            "styles": {
+              "comment": "See the example of a bubble style object"
             }
-           };
+          };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
