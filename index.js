@@ -241,38 +241,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
 
     function logo(agent){        
         const lineMessage = {
-            "type": "text", // ①
-            "text": "Select your favorite food category or send me your location!",
-            "quickReply": { // ②
-              "items": [
-                {
-                  "type": "action", // ③
-                  "imageUrl": "https://example.com/sushi.png",
-                  "action": {
-                    "type": "message",
-                    "label": "Sushi",
-                    "text": "Sushi"
-                  }
-                },
-                {
-                  "type": "action",
-                  "imageUrl": "https://example.com/tempura.png",
-                  "action": {
-                    "type": "message",
-                    "label": "Tempura",
-                    "text": "Tempura"
-                  }
-                },
-                {
-                  "type": "action", // ④
-                  "action": {
-                    "type": "location",
-                    "label": "Send location"
-                  }
-                }
-              ]
-            }
-          }/*{
             "type": "text",
             "text": "選擇下方的按鈕",
             "quickReply": {
@@ -296,7 +264,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     }
                 ]
             }
-        }*/;
+        };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
