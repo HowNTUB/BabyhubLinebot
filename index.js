@@ -508,6 +508,16 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 //agent.add('請照格式輸入年月📆，像是');
                 //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
                 var thisMonth=today.getFullYear() + '/' + (today.getMonth() + 1);
+                var thisMonthObject = {
+                    "type": "message",
+                    "label": "這個月",
+                    "text": thisMonth
+                };
+                var lastMonthObject = {
+                    "type": "message",
+                    "label": "這個月",
+                    "text": (thisMonth-1)
+                };
                 console.log(thisMonth);
                 const lineMessage = {
                     "type": "template",
@@ -517,16 +527,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                         "columns": [{
                             "title": "選擇📆月份",
                             "text": "選擇要查詢的月份，或是手動輸入年/月。",
-                            "actions": [{
-                                "type": "message",
-                                "label": "這個月",
-                                "text": "這個月"
-                            },
-                            {
-                                "type": "message",
-                                "label": "上個月",
-                                "text": "上個月"
-                            },
+                            "actions": [
+                                thisMonthObject,
+                                lastMonthObject,
                             {
                                 "type": "message",
                                 "label": "直接輸入年/月",
