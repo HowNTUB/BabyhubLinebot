@@ -934,88 +934,33 @@ app.post('/dialogflow', express.json(), (req, res) => {
               "layout": "vertical",
               "contents": [
                 {
-                  "type": "box",
-                  "layout": "baseline",
-                  "contents": [
-                    {
-                      "type": "icon",
-                      "url": "https://example.com/flex/images/icon.png",
-                      "size": "md"
-                    },
-                    {
-                      "type": "text",
-                      "text": "The quick brown fox jumps over the lazy dog",
-                      "size": "md"
-                    }
-                  ]
+                  "type": "image",
+                  "url": "https://example.com/flex/images/image.jpg",
+                  "size": "full"
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "spacer",
+                  "size": "xl"
                 },
                 {
-                  "type": "box",
-                  "layout": "baseline",
-                  "contents": [
-                    {
-                      "type": "icon",
-                      "url": "https://example.com/flex/images/icon.png",
-                      "size": "lg"
-                    },
-                    {
-                      "type": "text",
-                      "text": "The quick brown fox jumps over the lazy dog",
-                      "size": "lg"
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "baseline",
-                  "contents": [
-                    {
-                      "type": "icon",
-                      "url": "https://example.com/flex/images/icon.png",
-                      "size": "xl"
-                    },
-                    {
-                      "type": "text",
-                      "text": "The quick brown fox jumps over the lazy dog",
-                      "size": "xl"
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "baseline",
-                  "contents": [
-                    {
-                      "type": "icon",
-                      "url": "https://example.com/flex/images/icon.png",
-                      "size": "xxl"
-                    },
-                    {
-                      "type": "text",
-                      "text": "The quick brown fox jumps over the lazy dog",
-                      "size": "xxl"
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "baseline",
-                  "contents": [
-                    {
-                      "type": "icon",
-                      "url": "https://example.com/flex/images/icon.png",
-                      "size": "3xl"
-                    },
-                    {
-                      "type": "text",
-                      "text": "The quick brown fox jumps over the lazy dog",
-                      "size": "3xl"
-                    }
-                  ]
+                  "type": "button",
+                  "action": {
+                    "type": "uri",
+                    "label": "Tap me",
+                    "uri": "https://example.com"
+                  },
+                  "style": "primary",
+                  "color": "#0000ff"
                 }
               ]
             }
-          };
+           };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
