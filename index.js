@@ -505,8 +505,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
             } else if (data == -1) {
                 agent.add(noLoginMsg);
             } else {
-                agent.add('請照格式輸入年月📆，像是');
-                agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
+                //agent.add('請照格式輸入年月📆，像是');
+                //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
                 const lineMessage = {
                     "type": "template",
                     "altText": "這是一個Carousel文字選單樣板",
@@ -531,10 +531,9 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 "text": ""
                             }]
                         }]
-                        },
-                        "imageAspectRatio": "rectangle",
-                        "imageSize": "cover"
-                    }
+                    },
+                    "imageAspectRatio": "rectangle",
+                    "imageSize": "cover"
                 };
                 var payload = new Payload('LINE', lineMessage, {
                     sendAsMessage: true
