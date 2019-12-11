@@ -982,15 +982,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             "type": "cameraRoll",
                             "label": "Camera roll"
                         }
-                    },
-                    {
-                        "type": "action", // ④
-                        "action": {  
-                            "type":"postback",
-                            "label":"Buy",
-                            "data":"action=buy&itemid=111",
-                            "text":"Buy"
-                         }
                     }
                 ]
             }
