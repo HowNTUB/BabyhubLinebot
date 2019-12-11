@@ -509,31 +509,31 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
                 const lineMessage = {
                     "type": "template",
-                    "altText": "選擇要查詢的📆月份",
+                    "altText": "這是一個Carousel文字選單樣板",
                     "template": {
                         "type": "carousel",
                         "columns": [{
-                            "title": "選擇要查詢的📆月份",
-                            "text": "這個月、下個月、手動輸入",
+                            "title": "麵類",
+                            "text": "請選擇麵類餐點",
                             "actions": [{
                                 "type": "message",
-                                "label": "這個月",
-                                "text": today.getFullYear() + '/' + (today.getMonth() + 1)
+                                "label": "想吃牛肉麵",
+                                "text": "牛肉麵"
                             },
                             {
                                 "type": "message",
-                                "label": "上個月",
-                                "text": today.getFullYear() + '/' + (today.getMonth())
+                                "label": "想吃大魯麵",
+                                "text": "大魯麵"
                             },
                             {
                                 "type": "message",
-                                "label": "自己輸入(年/月)",
-                                "text": ""
+                                "label": "想吃蕃茄麵",
+                                "text": "蕃茄麵"
                             }]
-                        }]
-                    },
-                    "imageAspectRatio": "rectangle",
-                    "imageSize": "cover"
+                        }],
+                        "imageAspectRatio": "rectangle",
+                        "imageSize": "cover"
+                    }
                 };
                 var payload = new Payload('LINE', lineMessage, {
                     sendAsMessage: true
