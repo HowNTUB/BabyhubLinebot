@@ -531,7 +531,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                 {
                                     "type": "message",
                                     "label": "這個月",
-                                    "text": "2019/12"
+                                    "text": thisMonth
                                 }, {
                                     "type": "message",
                                     "label": "直接輸入年/月",
