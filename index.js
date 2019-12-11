@@ -200,6 +200,14 @@ app.post('/dialogflow', express.json(), (req, res) => {
     }
     function myBaby(agent) {
         var lineid = req.body.originalDetectIntentRequest.payload.data.source.userId;
+        const lineMessage = {
+            "type": "image",
+            "originalContentUrl": "https://i.imgur.com/FqSRyzU.png",
+            "previewImageUrl": "https://i.imgur.com/FqSRyzU.png"
+        };
+        var payload = new Payload('LINE', lineMessage, {
+            sendAsMessage: true
+        });
         return member.lineidGetId(lineid).then(data => {
             if (data == -9) {
                 agent.add(errorMsg);
@@ -226,10 +234,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                         emoji = "👧🏻";
                                     }
                                     agent.add(payload);
-                                    agent.add("1");
-                                    agent.add("2");
-                                    agent.add("3");
-                                    agent.add("4");
                                     if (item.height == null) {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
                                     } else {
