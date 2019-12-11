@@ -230,10 +230,10 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                         "originalContentUrl": "https://i.imgur.com/FqSRyzU.png",
                                         "previewImageUrl": "https://i.imgur.com/FqSRyzU.png"
                                     };
-                                    var payloada = new Payload('LINE', lineMessage, {
+                                    var payload = new Payload('LINE', lineMessage, {
                                         sendAsMessage: true
                                     });
-                                    agent.add(payloada);
+                                    agent.add(payload);
                                     if (item.height == null) {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
                                     } else {
