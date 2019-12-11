@@ -509,11 +509,11 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 //agent.add(today.getFullYear() + '/' + (today.getMonth() + 1));
                 const lineMessage = {
                     "type": "template",
-                    "altText": "這是一個Carousel文字選單樣板",
+                    "altText": "選擇要查詢的📆月份",
                     "template": {
                         "type": "carousel",
                         "columns": [{
-                            "title": "選擇要查詢的月份",
+                            "title": "選擇要查詢的📆月份",
                             "text": "這個月、下個月、手動輸入",
                             "actions": [{
                                 "type": "message",
