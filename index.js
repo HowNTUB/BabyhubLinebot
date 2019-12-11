@@ -533,7 +533,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                             {
                                 "type": "message",
                                 "label": "直接輸入年/月",
-                                "text": ""
+                                "text": " "
                             }]
                         }],
                         "imageAspectRatio": "rectangle",
