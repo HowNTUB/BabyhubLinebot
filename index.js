@@ -275,7 +275,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                   "imageUrl": "https://i.imgur.com/LzuXQ8x.png",
                   "action": {
                     "type": "message",
-                    "label": "Babyhub網頁版超鏈結🔗",
+                    "label": "Babyhub網頁版🔗",
                     "text": "Babyhub網頁版"
                   }
                 },
@@ -284,7 +284,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                   "imageUrl": "https://i.imgur.com/fm3Llxu.png",
                   "action": {
                     "type": "message",
-                    "label": "Line聊天機器人功能介紹",
+                    "label": "LineBot🤖功能介紹",
                     "text": "功能介紹"
                   }
                 }
