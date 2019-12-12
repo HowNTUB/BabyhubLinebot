@@ -272,7 +272,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
               "items": [
                 {
                   "type": "action", // ③
-                  "imageUrl": "https://example.com/sushi.png",
+                  "imageUrl": "https://i.imgur.com/Sk7hjYW.png",
                   "action": {
                     "type": "message",
                     "label": "Babyhub網頁版超鏈結🔗",
@@ -281,7 +281,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 },
                 {
                   "type": "action",
-                  "imageUrl": "https://example.com/tempura.png",
+                  "imageUrl": "https://i.imgur.com/fm3Llxu.png",
                   "action": {
                     "type": "message",
                     "label": "Line聊天機器人功能介紹",
