@@ -275,7 +275,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                   "imageUrl": "https://example.com/sushi.png",
                   "action": {
                     "type": "message",
-                    "label": "Babyhub網頁版鏈結",
+                    "label": "Babyhub網頁版超鏈結🔗",
                     "text": "Babyhub網頁版"
                   }
                 },
@@ -284,15 +284,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
                   "imageUrl": "https://example.com/tempura.png",
                   "action": {
                     "type": "message",
-                    "label": "Tempura",
-                    "text": "Tempura"
-                  }
-                },
-                {
-                  "type": "action", // ④
-                  "action": {
-                    "type": "location",
-                    "label": "Send location"
+                    "label": "Line聊天機器人功能介紹",
+                    "text": "功能介紹"
                   }
                 }
               ]
