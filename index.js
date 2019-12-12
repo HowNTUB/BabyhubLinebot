@@ -256,7 +256,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 },
                 {
                   "type": "action",
-                  "imageUrl": "https://i.imgur.com/fm3Llxu.png",
+                  "imageUrl": "https://i.imgur.com/meKY2Ir.png",
                   "action": {
                     "type": "message",
                     "label": "LineBot功能介紹🤖",
