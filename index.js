@@ -272,7 +272,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
               "items": [
                 {
                   "type": "action", // ③
-                  "imageUrl": "https://i.imgur.com/Sk7hjYW.png",
+                  "imageUrl": "https://i.imgur.com/LzuXQ8x.png",
                   "action": {
                     "type": "message",
                     "label": "Babyhub網頁版超鏈結🔗",
