@@ -228,7 +228,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                                     if (item.height == null) {
                                         agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n目前還沒有寶寶的身高體重資訊哦😢');
                                     } else {
-                                        agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n📏身高' + item.height + '公分,🎛️體重' + item.weight + '公斤');
+                                        agent.add(item.name + '是個' + emoji + item.gender + '\n🎂生日是' + moment(item.birthday).format("YYYY-MM-DD") + '\n📏身高' + item.height + '公分\n🎛️體重' + item.weight + '公斤');
                                     }
                                 });
                             }
