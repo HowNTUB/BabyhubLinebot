@@ -240,31 +240,6 @@ app.post('/dialogflow', express.json(), (req, res) => {
     }
 
     function logo(agent){
-        /*{
-            "type": "text",
-            "text": "選擇下方的按鈕",
-            "quickReply": {
-                "items": [
-                    {
-                      "type": "action",
-                      //"imageUrl": "https://i.imgur.com/QeXnecC.png",
-                      "action": {
-                        "type": "message",
-                        "label": "Babyhub網頁版超鏈結🔗",
-                        "text": "Babyhub網頁版"
-                      }
-                    },
-                    {
-                        "type": "action",
-                        //"imageUrl": "https://i.imgur.com/R32koUg.png",
-                        "action": {
-                            "type": "123", //Babyhub Line聊天機器人功能介紹
-                            "label": "123" //關於下方的📋圖文功能選單：\n-\n✏️ 鉛筆圖示為日記相關功能\n-\n🎛️ 體重計圖示為成長紀錄相關功能\n-\n‍♂️ 人像圖示為帳號資訊相關功能\n-\n🟢 登入登出功能\n-\n🐻 Logo圖示為Babyhub的相關資訊
-                        }
-                    }
-                ]
-            }
-        }*/
         const lineMessage = {
             "type": "text", // ①
             "text": "點選要查看的資訊",
@@ -272,7 +247,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
               "items": [
                 {
                   "type": "action", // ③
-                  "imageUrl": "https://i.imgur.com/LzuXQ8x.png",
+                  "imageUrl": "https://i.imgur.com/SYkq1xb.jpg",
                   "action": {
                     "type": "message",
                     "label": "Babyhub網頁版🔗",
@@ -307,7 +282,7 @@ app.post('/dialogflow', express.json(), (req, res) => {
                 if (data == -1) { //沒登入
                     agent.add("請照以下格式輸入📧信箱與密碼來登入。\n信箱;密碼");
                     agent.add("像是：babyhub@gmail.com;mypassword");
-                    agent.add("如果還沒有帳號的話，請先至官網註冊（點選📋圖文選單的Babyhub 🐻logo）。")
+                    agent.add("如果還沒有帳號的話，請先至官網註冊。（點選📋圖文選單的Babyhub 🐻logo）")
                 } else { //已登入
                     const lineMessage = {
                         "type": "template",
