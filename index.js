@@ -239,8 +239,8 @@ app.post('/dialogflow', express.json(), (req, res) => {
         })
     }
 
-    function logo(agent){        
-        const lineMessage = {
+    function logo(agent){
+        /*{
             "type": "text",
             "text": "選擇下方的按鈕",
             "quickReply": {
@@ -264,7 +264,40 @@ app.post('/dialogflow', express.json(), (req, res) => {
                     }
                 ]
             }
-        };
+        }*/
+        const lineMessage = {
+            "type": "text", // ①
+            "text": "點選要查看的資訊",
+            "quickReply": { // ②
+              "items": [
+                {
+                  "type": "action", // ③
+                  "imageUrl": "https://example.com/sushi.png",
+                  "action": {
+                    "type": "message",
+                    "label": "Babyhub網頁版鏈結",
+                    "text": "Babyhub網頁版"
+                  }
+                },
+                {
+                  "type": "action",
+                  "imageUrl": "https://example.com/tempura.png",
+                  "action": {
+                    "type": "message",
+                    "label": "Tempura",
+                    "text": "Tempura"
+                  }
+                },
+                {
+                  "type": "action", // ④
+                  "action": {
+                    "type": "location",
+                    "label": "Send location"
+                  }
+                }
+              ]
+            }
+          };
         var payload = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         });
