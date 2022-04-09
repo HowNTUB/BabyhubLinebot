@@ -14,7 +14,7 @@
     "dialogflow": "^0.6.0",
     "dialogflow-fulfillment": "github:dialogflow/dialogflow-fulfillment-nodejs#master",
     "express": "^4.16.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "pg": "^7.11.0"
   }
 }
